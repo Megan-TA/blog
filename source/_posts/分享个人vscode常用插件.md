@@ -1,0 +1,38 @@
+---
+title: 分享个人vscode常用插件
+catalog: true
+date: 2019-06-19 13:39:11
+subtitle:
+header-img:
+tags: tool
+---
+
+1. Visual Studio IntelliCode 智能补全
+2. prettier 快速格式化 CMD+Shift+P
+3. Regex Previewer 正则表达式测试
+4. stylelint
+5. vetur # 开发vue，语法补全、提示助手 （必备插件）
+6. vscode-icons # vscode图标显示
+7. 小程序助手
+8. vscode-element-helper
+9. SVG Viewer # 预览SVG
+10. Path Intellisense 路径自动补全
+11. minapp # 小程序开发语法补全、提示助手
+12. markdownlint markdown语法支持和预览
+13. Live Server
+14. koroFileHeader # 函数注释、文件信息
+15. GitLens # git辅助工具
+16. javascript code snippets # js代码提示、补全
+17. Eslint # 代码风格提示
+18. Element UI Snippets
+19. EditorConfig for vs code
+20. Document This
+21. Debugger for Chrome
+22. Color HighLight
+23. CodeIf
+24. Code Runner
+25. Chinese Lanfguage Pack for vs code
+26. Bracket Pair Colorizer 括号以多彩颜色区分
+27. Beautify    # 美化代码
+28. Auto Rename Tag # 自动重命名标签
+29. Auto Close Tag  # 自动闭合标签
