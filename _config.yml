@@ -103,6 +103,7 @@ friends: [
 ]
 
 
+
 #Custom Setting End
 
 
@@ -143,7 +144,11 @@ category_map:
   Etcd: etcd
   Database: database
 
-tag_map:
+tag_map: [
+  {
+    name: 11
+  }
+]
 home_posts_tag: true # show posts tags
 
 # Date / Time format
