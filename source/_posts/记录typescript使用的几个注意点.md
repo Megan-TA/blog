@@ -1,0 +1,119 @@
+---
+title: 记录typescript使用的几个注意点
+catalog: true
+date: 2019-07-22 13:38:34
+subtitle:
+header-img:
+tags: javascript
+---
+
+近期在做前端团队公共模块和方法的私有npm包的时候，采用`typescript`保证包的代码质量，在使用`ts`的过程遇到一些小问题，特此记录下遇到的一些小问题。
+
+1. 不想一个个导入类型文件，希望有全局引用类型文件
+
+一开始在给每个文件定义类型的时候，都会将文件类型放在`types`文件夹下，通过`es6`模块暴露出来并在项目中引入对应的类型文件，开始引用方式如下：
+
+```javascript
+// types/test.d.ts
+export declare const test = '123'
+
+// src/test.ts
+import { test } from '../types/test'
+
+```
+
+这样的话默认也是把`.d.ts`文件当做一个模块，但是每次都引入的时候会比较麻烦，有没有更简便的方法，不需要引入类型文件？
+
+答案是有的：利用全局的`namespace`和`tsconfig.json`配置
+
+以下是`tsconfig.json`一些配置项：
+
+```javascript
+{
+    "compilerOptions": {
+      "target": "es5",
+      "module": "commonjs",
+      "outDir": "./dist/lib",
+      "declaration": true,  // 开启打包之后会输出.d.ts文件
+      "declarationDir": "./dist/types",  // 默认.d.ts会输出到文件所在目录下，也可以指定.d.ts存放路径
+      "strict": true,
+      "jsx": "preserve",
+      "importHelpers": true,
+      "removeComments": true,
+      "moduleResolution": "node",
+      "experimentalDecorators": true,
+      "allowJs": false,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "sourceMap": false,
+      "baseUrl": ".",
+      "types": [
+        "node",
+        "./types"  // 本地types所在目录，必须在此引入
+      ],
+      "lib": [
+        "esnext",
+        "dom",
+        "dom.iterable",
+        "scripthost"
+      ]
+    },
+    "include": [
+      "src/**/*.ts",
+      "src/**/**/*.ts"
+    ],
+    "exclude": [
+      "node_modules"
+    ]
+}
+
+```
+
+注意上面的types配置需要将自己定义的`types`文件导入进来，这样一个未知类型会在这个指定范围去查找。
+
+项目代码使用：
+
+```javascript
+//types/test.d.ts
+declare namespace Test {
+    interface Detail {
+        name: string
+    }
+}
+
+// src/test.ts
+function getTestDetail (detail: Test.Detail){}
+
+```
+
+这样就不需要项目代码去引用类型文件，缺点是暴露全局的`namespace`，需要自己根据情况作出取舍。
+
+2. 定义自定义对象的属性枚举值
+
+定义一个配置对象，除了`key`之外其他属性一样，利用枚举特性定义`key`
+
+```javascript
+declare enum ENV {
+  dev = 'dev',
+  prod = 'prod'
+}
+
+export interface ConfigResult {
+  region: string
+  accessKeyId: string
+  accessKeySecret: string
+  expAfter: number
+  bucket: string
+  maxSize: number
+  startsWith: string
+  ossHost: string
+  host: string
+}
+
+export interface Config {
+  [key: string]: {
+    [key in ENV]: ConfigResult
+  }
+}
+
+```
