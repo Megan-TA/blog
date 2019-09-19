@@ -7,7 +7,7 @@ header-img:
 tags: javascript
 ---
 
-近期在做前端团队公共模块和方法的私有npm包的时候，采用`typescript`保证包的代码质量，在使用`ts`的过程遇到一些小问题，特此记录下遇到的一些小问题。
+近期在做前端团队公共模块和方法的私有 npm 包的时候，采用`typescript`保证包的代码质量，在使用`ts`的过程遇到一些小问题，特此记录下遇到的一些小问题。
 
 1. 不想一个个导入类型文件，希望有全局引用类型文件
 
@@ -69,7 +69,7 @@ import { test } from '../types/test'
 
 ```
 
-注意上面的types配置需要将自己定义的`types`文件导入进来，这样一个未知类型会在这个指定范围去查找。
+注意上面的 types 配置需要将自己定义的`types`文件导入进来，这样一个未知类型会在这个指定范围去查找。
 
 项目代码使用：
 
@@ -117,3 +117,5 @@ export interface Config {
 }
 
 ```
+
+3. 类型文件里面不能导出/定义`枚举值`，枚举值需要单独定义在代码层面，不然会报`Error: Debug Failure. False expression: Output generation failed`
