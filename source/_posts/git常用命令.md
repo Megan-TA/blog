@@ -73,3 +73,9 @@ git remote rm old-origin
 git push -u origin --all
 git push -u origin --tags
 ```
+
+6. 导出私钥
+
+没有设置 ssh 的话，拉取代码会报`Permission denied, please try again`
+
+导出公私钥的方式`ssh-keygen -t rsa -C "xxxx@xxxx.com"`会生成 id_rsa 和 id_rsa.pub 两个文件，将 id_rsa.pub 拷贝到 gitlab 对应的远程仓库的 ssh keys 列表里面
