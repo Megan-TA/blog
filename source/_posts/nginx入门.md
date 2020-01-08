@@ -163,10 +163,36 @@ tags: nginx
       #charset koi8-r; //编码
       #access_log  /var/log/nginx/host.access.log  main;  //访问日志文件和名称
 
-      # 代理
-      location / {
-          proxy_pass http://localhost:3000
+      # 代理http协议请求
+      location /api {
+          proxy_pass http://localhost:3000;
       }
+
+      # 代理ws协议请求
+      location /ws {
+        proxy_pass http://localhost:3000;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection ‘Upgrade‘;
+      }
+
+
+
+        # 代理/api/路径的请求 并去掉/api/路径进行转发
+        location ~ /api/ {
+            rewrite /api/(.*)$ /$1 break;
+            proxy_pass  http://www.baidu.com;
+        }
+
+        location ~ / {
+            root /data/www-data/bolton/;
+            try_files $uri $uri/ /index.html;
+            index index.html;
+        }
+
+
+
+
+
 
 
       # 转发请求静态资源（js、css）规则

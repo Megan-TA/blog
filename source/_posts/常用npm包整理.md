@@ -76,3 +76,7 @@ yarn add standard-version -D
 ## verdaccio
 
 搭建私有 npm 库
+
+## protocol-buffers
+
+nodejs 处理 rpc 通信的一种数据序列化格式模块 类似 JSON
