@@ -23,8 +23,8 @@ permalink_defaults:
 # Site settings
 SEOTitle: 黄晨 | chen_huang | Blog
 email: hc1132107224@163.com
-description: ""
-keyword: ""
+description: "一个码农的个人博客"
+keyword: "博客，前端，js，javascript，vue，react，node，npm，黄晨"
 header-img: /blog/img/header_img/home.jpg
 article-img: /blog/img/article_header/article_bg.jpg
 404-img: /blog/img/header_img/404.png
