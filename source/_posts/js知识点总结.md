@@ -98,13 +98,13 @@ document.getElementById('xx').scrollIntoView()
 - 不适用于来判断数组，因为不管是数组还是对象，都会返回 object。
 - 判断不了 null null 也是对象
 
->
-
 ```
 typeof [1]      // Object
 ```
 
 > ### instanceof
+
+运算符用来测试一个对象在其原型链中是否存在一个构造
 
 返回的是一个布尔值 只能用来判断对象和函数
 

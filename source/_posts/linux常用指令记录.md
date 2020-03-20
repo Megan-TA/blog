@@ -184,3 +184,7 @@ find / -name 文件名
 2. [nginx: [emerg] invalid socket number ](https://blog.csdn.net/bikeorcl/article/details/78850265)
 
 ---
+
+- 进程查看
+
+ps -ef | grep

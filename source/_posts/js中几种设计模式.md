@@ -165,7 +165,10 @@ const adapterWrapper = new AdapterWrapper();
 adapterWrapper.m2$();
 ```
 
-应用场景：多个对象合并成一个对象
+应用场景：
+
+- 处理接口返回字段不一致
+- 多个对象合并成一个对象
 
 ## 装饰器模式（AOP 编程）
 
