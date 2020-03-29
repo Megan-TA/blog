@@ -5,6 +5,7 @@ date: 2019-07-22 23:00:47
 subtitle:
 header-img:
 tags: javascript
+categories: 开发中遇到的问题
 ---
 
 1. IntersectionObserver
