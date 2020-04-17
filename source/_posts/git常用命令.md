@@ -74,8 +74,28 @@ git push -u origin --all
 git push -u origin --tags
 ```
 
-6. 导出私钥
+6.导出私钥
 
 没有设置 ssh 的话，拉取代码会报`Permission denied, please try again`
 
 导出公私钥的方式`ssh-keygen -t rsa -C "xxxx@xxxx.com"`会生成 id_rsa 和 id_rsa.pub 两个文件，将 id_rsa.pub 拷贝到 gitlab 对应的远程仓库的 ssh keys 列表里面
+
+7.mac 上 git 使用每次都需要输入管理员密码解决
+
+```shell
+ssh-add
+```
+
+ssh-add 这个命令不是用来永久性的记住你所使用的私钥的。实际上，它的作用只是把你指定的私钥添加到 ssh-agent 所管理的一个
+session 当中。而 ssh-agent 是一个用于存储私钥的临时性的 session 服务，也就是说当你重启之后，ssh-agent
+服务也就重置了。
+
+下面的命令是永久记住私钥
+
+```shell
+ssh-add -K ~/.ssh/id_rsa
+```
+
+参考资料
+
+[Generating a new SSH key and adding it to the ssh-agent](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)

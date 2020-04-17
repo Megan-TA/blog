@@ -64,6 +64,8 @@ chmod +x 路径
 
 - 给指定目录以指定用户/用户组的所有权限
 
+事例：chown 用户名 目录
+
 ```shell
 chown -R www:www /data/www-data/test
 ```
