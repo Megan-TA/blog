@@ -25,11 +25,11 @@ SEOTitle: 黄晨 | chen_huang | Blog
 email: hc1132107224@163.com
 description: "一个码农的个人博客"
 keyword: "博客，前端，js，javascript，vue，react，node，npm，黄晨"
-header-img: /blog/img/header_img/home.jpg
-article-img: /blog/img/article_header/article_bg.jpg
-404-img: /blog/img/header_img/404.png
+header-img: //s1.ax1x.com/2020/06/04/twL8yT.jpg
+article-img: //s1.ax1x.com/2020/06/04/twLffI.jpg
+404-img: //s1.ax1x.com/2020/06/04/twL3lV.png
 signature: false #show signature
-signature-img: /blog/img/signature/BeanTechSign-white.png
+signature-img: //s1.ax1x.com/2020/06/04/twXKx0.png
 
 # SNS settings
 # RSS: false
@@ -61,7 +61,7 @@ ba_track_id: xxx
 # Sidebar settings
 sidebar: true # whether or not using Sidebar.
 sidebar-about-description: "Stay hungry,Stay foolish"
-sidebar-avatar: /blog/img/avatar/ironman.png # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: //s1.ax1x.com/2020/06/04/twXIeS.png # use absolute URL, seeing it's used in both `/` and `/about/`
 widgets:
   - featured-tags
   - short-about
@@ -72,7 +72,7 @@ widgets:
 
 # widget behavior
 ## Archive
-archives-img: /blog/img/header_img/archives-widget.jpg
+archives-img: //s1.ax1x.com/2020/06/04/twLQWq.jpg
 archive_type: "monthly"
 show_count: true
 
@@ -85,7 +85,7 @@ friends:
   [
     {
       title: "掘金 chen_huang",
-      href: "https://juejin.im/user/587ecf045c497d0058ba78d7",
+      href: "//juejin.im/user/587ecf045c497d0058ba78d7",
     },
   ]
 
