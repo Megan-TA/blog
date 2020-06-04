@@ -108,8 +108,22 @@ pm2 monitor \${id}
 
 开发模式实时编译文件并输出到指定目录下
 
+## 单元测试
+
+- supertest
+
+http断言库
+
+## 定时任务
+
+- node-cron 定时脚本/任务
+
 ## 其他
 
 - verdaccio
 
 搭建私有 npm 库
+
+- 安装本地包
+
+npm install 完整的相对路径 如/User/Desktop/XXX

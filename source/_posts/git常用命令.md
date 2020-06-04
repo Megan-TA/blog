@@ -9,34 +9,34 @@ tags: git
 
 1. 记录账户密码，不用每次 pull/push 都输入账号密码
 
-   在指定项目下，或者全局的根目录下输入如下命令，再执行 pull 之后输入账号密码，以后就不用再输入了
+    在指定项目下，或者全局的根目录下输入如下命令，再执行 pull 之后输入账号密码，以后就不用再输入了
 
-   ```shell
-     git config --global credential.helper store
-   ```
+    ```shell
+      git config --global credential.helper store
+    ```
 
 2. git 回退版本
 
-   - 本地回退到指定版本
+    - 本地回退到指定版本
 
-   ```shell
-     git reset --hard commit_id
-   ```
+    ```shell
+      git reset --hard commit_id
+    ```
 
-- 远程强制回退到指定版本
+-   远程强制回退到指定版本
 
-  ```shell
-    git push origin HEAD --force
-  ```
+    ```shell
+      git push origin HEAD --force
+    ```
 
 3. git rebase
    指定要合并 commit 的 id（不包含这个 commit）
 
-   ```shell
-     git rebase -i commit_id
-   ```
+    ```shell
+      git rebase -i commit_id
+    ```
 
-   交互操作： s 合并 commit 记录 p 选中当前 commit 记录
+    交互操作： s 合并 commit 记录 p 选中当前 commit 记录
 
 4. git tag
    打标签
@@ -92,8 +92,15 @@ session 当中。而 ssh-agent 是一个用于存储私钥的临时性的 sessio
 
 下面的命令是永久记住私钥
 
+在~/.ssh/config 文件中添加如下命令：
+
 ```shell
-ssh-add -K ~/.ssh/id_rsa
+// 在命令行使用vim 创建config,输入内容
+Host *
+   AddKeysToAgent yes
+   UseKeychain yes
+   IdentityFile ~/.ssh/id_rsa
+// 保存后,输入命令: ssh-add -K ~/.ssh/id_rsa 问题就解决了
 ```
 
 参考资料

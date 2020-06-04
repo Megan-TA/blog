@@ -36,3 +36,13 @@ tags: IDE
 27. Beautify # 美化代码
 28. Auto Rename Tag # 自动重命名标签
 29. Auto Close Tag # 自动闭合标签
+30. Better Comments
+31. DotENV
+32. Git Graph git可视化工具
+33. Git History Diff
+34. git-commit-lint-vscode commit加上emoji
+35. Import Cost 显示导入模块大小
+36. Open file From Path 直接跳转到指定代码
+37. VS Color Picker 取色工具
+38. vscode-fileheader
+39. image preview 侧边栏图片预览
