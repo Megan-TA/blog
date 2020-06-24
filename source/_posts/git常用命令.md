@@ -52,6 +52,16 @@ drop案例：
 spuash案例：
 ![git rebase -i HEAD~3](https://mmbiz.qpic.cn/mmbiz_gif/meG6Vo0MeviaPS2ZgOV7sV3qpnhsB4LFOfOgVv8QmLumCzyvHzLutYBgWY5u1buC2ibGibfn8b7LLFg7bM92uB97g/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1)
 
+变基之后，直接push会默认采用fast-forward模式去push，如果在master分支其他人有修改需要进行--force提交
+
+- 开发分支只有你一个人在开发
+
+直接进行`git push --force origin XX`。
+
+- 开发分支多人开发
+
+此时如果你贸然的使用–force命令，会有覆盖掉其他人提交代码的风险。此时使用`git push --force-with-lease origin XX`，该命令在强制覆盖前会进行一次检查，如果其他人在该分支上有提交会有一个警告，此时可以避免覆盖代码的风险。
+
 ## git reset（重置）
 
 ### 软重置
