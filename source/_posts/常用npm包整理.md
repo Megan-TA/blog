@@ -126,4 +126,4 @@ http断言库
 
 - 安装本地包
 
-npm install 完整的相对路径 如/User/Desktop/XXX
+npm install file:完整的相对路径 如file:/User/Desktop/XXX

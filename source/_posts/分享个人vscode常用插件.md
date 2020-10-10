@@ -46,3 +46,25 @@ tags: IDE
 37. VS Color Picker 取色工具
 38. vscode-fileheader
 39. image preview 侧边栏图片预览
+
+---
+
+给vscode文件目录设置别名，并在引入时有对应提示，需要在根目录下新增`jsconfig.json`的文件
+
+```json
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "commonjs",
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": "./",
+        "paths": {
+            "@/*": ["src/*"],
+            "@public/*": ["src/_public/*"],
+        }
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}
+```

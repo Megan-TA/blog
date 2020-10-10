@@ -113,7 +113,15 @@ git reflog用于显示所有已执行性操作的日志！包含合并、重置�
 
 ![git reflog](https://mmbiz.qpic.cn/mmbiz_gif/meG6Vo0MeviaPS2ZgOV7sV3qpnhsB4LFOWIushRbiaiagnJor6ac0LTIDZpJiaicPBK0eMibv0uXS9vlD7VlFtva2hFQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1)
 
+## git log (查看提交日志)
+
+-n 查看几条日志 比如： git log -1 查看第一条日志
+
 ## git tag（标签）
+
+### 查看tag
+
+git tag
 
 ### 本地打tag
 
@@ -147,7 +155,9 @@ git push origin –tags
 
 导出公私钥的方式`ssh-keygen -t rsa -C "xxxx@xxxx.com"`会生成 id_rsa 和 id_rsa.pub 两个文件，将 id_rsa.pub 拷贝到 gitlab 对应的远程仓库的 ssh keys 列表里面
 
-### 项目迁移到新仓库同步所有提交记录
+### 旧仓库迁移到新仓库同步所有提交记录
+
+旧仓下
 
 ```shell
 git remote rename origin old-origin
@@ -155,6 +165,31 @@ git remote add origin 远程地址
 git remote rm old-origin
 git push -u origin --all
 git push -u origin --tags
+```
+
+### 多个旧仓库迁移到新仓库，新仓库以目录维度分别存放旧仓库代码，并同步所有提交记录
+
+先在一个旧仓下同步所有代码到新仓，在新仓下建立新的目录存放当前旧仓代码，之后在新仓库下加入新源，同步获取后将远端master分支
+拉取到本地，之后再切换回原来master分支，合并新源远端代码
+
+旧仓下
+
+```shell
+git remote rename origin old-origin
+git remote add origin 远程地址
+git remote rm old-origin
+git push -u origin --all
+git push -u origin --tags
+```
+
+新仓下
+
+```shell
+git remote add other 远程地址
+git fetch other
+git checkout -b newbench other/master
+git checkout master
+git merge newbench --allow-unrelated-histories
 ```
 
 ### 记录账户密码，不用每次 pull/push 都输入账号密码

@@ -36,6 +36,10 @@ touch XXX
 netstat -ntpl
 ```
 
+- 查看使用指定端口的进程
+
+lsof -i:XXXX
+
 - 设置环境变量
 
 `vi /etc/profile`在文件的最下方倒数第三行里面编写变量名，例如：`export NGINX=/usr/local/webserver/nginx/conf` 保存之后不会立即生效，需要输入`source /etc/profile`，之后`echo $NGINX`查看是否生效
@@ -190,3 +194,7 @@ find / -name 文件名
 - 进程查看
 
 ps -ef | grep
+
+- vim 多行编辑
+
+ctrl+v
