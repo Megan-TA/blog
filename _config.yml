@@ -148,16 +148,21 @@ archive_generator:
   monthly: true
   daily: false
 
+## hexo-renderer-marked
+## Docs: https://github.com/hexojs/hexo-renderer-marked
+marked:
+  gfm: true
+
 # Markdown-it config
 ## Docs: https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki
-markdown:
-  render:
-    html: true
-    xhtmlOut: false
-    breaks: true
-    linkify: true
-    typographer: true
-    quotes: "“”‘’"
+# markdown:
+#   render:
+#     html: true
+#     xhtmlOut: false
+#     breaks: true
+#     linkify: true
+#     typographer: true
+#     quotes: "“”‘’"
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
