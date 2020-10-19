@@ -9,17 +9,17 @@ tags: git
 
 ## git merge（合并）
 
-git 中有两个合并策略： fast-forward（-ff）和no-fast-forward（--no-ff）
+git 中有两个合并策略： fast-forward（-ff）和 no-fast-forward（--no-ff）
 
 ### fast-forward（--ff）
 
-从master分支切出的dev分支，dev在merge到master时，master分支并没有额外提交，那么合并不会产生新的提交记录
+从 master 分支切出的 dev 分支，dev 在 merge 到 master 时，master 分支并没有额外提交，那么合并不会产生新的提交记录
 
 ![git merge --ff](https://mmbiz.qpic.cn/mmbiz_gif/meG6Vo0MeviaPS2ZgOV7sV3qpnhsB4LFOtuyKTBrtvK9POh0ZicUNyIXv0ibWLFrc3LicMicWlicFhqlUV5qLcC0t1tw/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1)
 
 ### no-fast-forward（--no-ff）
 
-dev在merge到master时，master分支有额外提交，那么合并会产生新的提交记录
+dev 在 merge 到 master 时，master 分支有额外提交，那么合并会产生新的提交记录
 
 ![git merge --no-ff](https://mmbiz.qpic.cn/mmbiz_gif/meG6Vo0MeviaPS2ZgOV7sV3qpnhsB4LFOovc8FicicdbGMeIPQt2bFCq8xmucibxsQ7zWib2g8NDW5GWRq2arZ6sktA/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1)
 
@@ -29,7 +29,11 @@ dev在merge到master时，master分支有额外提交，那么合并会产生新
 
 git rebase 指令会 复制 当前分支的所有最新提交，然后将这些提交添加到指定分支提交记录之上。
 
-比较适合开发阶段，master分支做了修改同步到开发分支。
+比较适合开发阶段，master 分支做了修改同步到开发分支。
+
+若想修改仓库第一条 commit 需要使用`git rebase -i --root`
+
+若想
 
 ![git rebase](https://mmbiz.qpic.cn/mmbiz_gif/meG6Vo0MeviaPS2ZgOV7sV3qpnhsB4LFOs1pbHgKho3v46GZhMre3BDX1JHVicL4lTlzKOmVfpwiaqRdwVGZ9WsFA/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1)
 
@@ -46,13 +50,13 @@ git rebase 时，我们还能通过交互式变基（Interactive Rebase）方式
 - exec：在每一个需要变基的提交上执行一条命令
 - drop：删除提交
 
-drop案例：
+drop 案例：
 ![git rebase -i HEAD~3](https://mmbiz.qpic.cn/mmbiz_gif/meG6Vo0MeviaPS2ZgOV7sV3qpnhsB4LFOBnJ7NwOgrzMIhcKXsME3PiaIaoVQyuNpUyduZk1CZ5s6SLfec8zfONA/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1)
 
-spuash案例：
+spuash 案例：
 ![git rebase -i HEAD~3](https://mmbiz.qpic.cn/mmbiz_gif/meG6Vo0MeviaPS2ZgOV7sV3qpnhsB4LFOfOgVv8QmLumCzyvHzLutYBgWY5u1buC2ibGibfn8b7LLFg7bM92uB97g/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1)
 
-变基之后，直接push会默认采用fast-forward模式去push，如果在master分支其他人有修改需要进行--force提交
+变基之后，直接 push 会默认采用 fast-forward 模式去 push，如果在 master 分支其他人有修改需要进行--force 提交
 
 - 开发分支只有你一个人在开发
 
@@ -60,7 +64,7 @@ spuash案例：
 
 - 开发分支多人开发
 
-此时如果你贸然的使用–force命令，会有覆盖掉其他人提交代码的风险。此时使用`git push --force-with-lease origin XX`，该命令在强制覆盖前会进行一次检查，如果其他人在该分支上有提交会有一个警告，此时可以避免覆盖代码的风险。
+此时如果你贸然的使用–force 命令，会有覆盖掉其他人提交代码的风险。此时使用`git push --force-with-lease origin XX`，该命令在强制覆盖前会进行一次检查，如果其他人在该分支上有提交会有一个警告，此时可以避免覆盖代码的风险。
 
 ## git reset（重置）
 
@@ -89,7 +93,7 @@ git push origin COMMIT_ID --force
 
 ## git cherry-pick（检出提交）
 
-如果分支上的某次提交是合并分支需要的，可以使用cherry-pick单独将某次提交合并分支。
+如果分支上的某次提交是合并分支需要的，可以使用 cherry-pick 单独将某次提交合并分支。
 
 ![git cherry-pick XXXX](https://mmbiz.qpic.cn/mmbiz_gif/meG6Vo0MeviaPS2ZgOV7sV3qpnhsB4LFO9KAj8ZGBkjDallvJibGfibgWnfa5ECCY2pOpf6tZwwicv6RGViazjibRiaAg/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1)
 
@@ -101,7 +105,7 @@ git push origin COMMIT_ID --force
 
 ## git pull（拉取）
 
-git pull实际做了两件事： git fetch和git merge
+git pull 实际做了两件事： git fetch 和 git merge
 
 ![git pull](https://mmbiz.qpic.cn/mmbiz_gif/meG6Vo0MeviaPS2ZgOV7sV3qpnhsB4LFO9Zib2iag8NqZMe4IrLnEQyqKlicfm6PjbdicfmicbCHNY0yGJu2nweOx2uA/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1)
 
@@ -109,7 +113,7 @@ git pull实际做了两件事： git fetch和git merge
 
 每个人都会犯错，举一个例子：假设你不小心使用 git reset 命令硬重置仓库到某个提交。后面突然想到，重置导致了一些已有的正常代码的误删！
 
-git reflog用于显示所有已执行性操作的日志！包含合并、重置、还原等
+git reflog 用于显示所有已执行性操作的日志！包含合并、重置、还原等
 
 ![git reflog](https://mmbiz.qpic.cn/mmbiz_gif/meG6Vo0MeviaPS2ZgOV7sV3qpnhsB4LFOWIushRbiaiagnJor6ac0LTIDZpJiaicPBK0eMibv0uXS9vlD7VlFtva2hFQ/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1)
 
@@ -119,11 +123,11 @@ git reflog用于显示所有已执行性操作的日志！包含合并、重置�
 
 ## git tag（标签）
 
-### 查看tag
+### 查看 tag
 
 git tag
 
-### 本地打tag
+### 本地打 tag
 
 ```shell
   git tag v1.0.0
@@ -169,8 +173,8 @@ git push -u origin --tags
 
 ### 多个旧仓库迁移到新仓库，新仓库以目录维度分别存放旧仓库代码，并同步所有提交记录
 
-先在一个旧仓下同步所有代码到新仓，在新仓下建立新的目录存放当前旧仓代码，之后在新仓库下加入新源，同步获取后将远端master分支
-拉取到本地，之后再切换回原来master分支，合并新源远端代码
+先在一个旧仓下同步所有代码到新仓，在新仓下建立新的目录存放当前旧仓代码，之后在新仓库下加入新源，同步获取后将远端 master 分支
+拉取到本地，之后再切换回原来 master 分支，合并新源远端代码
 
 旧仓下
 

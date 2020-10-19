@@ -204,7 +204,6 @@ js 动画库 （比如 Velocity.js 和 GSAP）
 ## 9. selection
 
 > 获取鼠标划过文本的对象
-
 > `window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();`
 
 ---
@@ -508,8 +507,6 @@ newAdd.add.bind(newSub, 10, 4)();   // 14
 
 ```
 
->
-
 > > **注意**
 > >
 > > > 若想要全部继承父级所有相关属性 得采用==原型链继承==的方式
@@ -568,10 +565,6 @@ localStorage.clear();
     因为js是链式的 一层一层向上级查找 所以外部函数无法访问内部函数;
 
 > > 优点
->
-> - 可以读取函数内部的变量，外部无法访问到里面变量;
-> - 函数在执行完毕不会被销毁 而是一直存在内存中;
-
 > > 缺点
 >
 > - 不会被内存回收 容易出现性能问题
@@ -843,17 +836,17 @@ define(['./a', './b'], function(a, b) {
 })
 ```
 
-2.  对于依赖的模块，
+2. 对于依赖的模块，
 
-    AMD 是提前执行（预执行），
+   AMD 是提前执行（预执行），
 
-    CMD 是延迟执行（懒执行）。
+   CMD 是延迟执行（懒执行）。
 
 > 不过 RequireJS 从 2.0 开始，也改成可以延迟执行（根据写法不同，处理方式不同）。CMD 推崇 as lazy as possible.
 
-3.  AMD 的 API 默认是一个当多个用，
+3. AMD 的 API 默认是一个当多个用，
 
-    CMD 的 API 严格区分，推崇职责单一
+   CMD 的 API 严格区分，推崇职责单一
 
 > 比如 AMD 里，require 分全局 require 和局部 require，都叫 require。CMD 里，没有全局 require，而是根据模块系统的完备性，提供 seajs.use 来实现模块系统的加载启动。CMD 里，每个 API 都简单纯粹。
 
@@ -996,9 +989,9 @@ define(['./a', './b'], function(a, b) {
 - \B : 非独立的部分
 - {n,m}：至少出现 n 次，最多 m 次
 - {n,} :至少 n 次
-- - :任意次 相当于{0,}
+  - - :任意次 相当于{0,}
 - ？ ：零次或一次 相当于{0,1}
-- - ：一次或任意次相当于 {1,}
+  - - ：一次或任意次相当于 {1,}
 - {n}： 正好 n 次
 - [] ： 表示某个集合中的任意一个 不能为空
 
@@ -1265,7 +1258,6 @@ test.substring(2, -3) => ab
 1.
 
 > CommomJS 模块 require 代码时候会立刻执行；
-
 > ES6 模块是动态引用，不会立刻执行，仅仅作为一个加载模块的对象引用；
 
 2.
@@ -1302,7 +1294,7 @@ console.log(mod.counter); // 3
 
 参考资料：
 
-1. [ES6 模块与 CommonJS 模块的差异 ](http://es6.ruanyifeng.com/#docs/module-loader)
+1. [ES6 模块与 CommonJS 模块的差异](http://es6.ruanyifeng.com/#docs/module-loader)
 
 ## 38. 浏览器缓存
 
@@ -1343,12 +1335,8 @@ console.log(mod.counter); // 3
 
 处理方法：
 
-    1. toFixed  不够严谨；
-    2. 把需要计算的数字升级（乘以10的n次幂）成计算机能够精确识别的整数，等计算完毕再降级（除以10的n次幂），这是大部分编程语言处理精度差异的通用方法。
-
-    ```javascript
-    ;(0.1 * 10 + 0.2 * 10) / 10 == 0.3
-    ```
+    1. 优先考虑服务端计算；
+    2. 利用精度溢出结尾要么99999要么1111，可以利用Math.round()四舍五入；
 
 1. [个人封装的处理双精度方法 第 7 点](https://github.com/Megan-TA/UtilsJS)
 

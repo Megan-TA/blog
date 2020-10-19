@@ -112,7 +112,13 @@ pm2 monitor \${id}
 
 - supertest
 
-http断言库
+http 断言库
+
+- jest
+
+- mock-fs
+
+在内存里模拟 fs 文件，进行 mock 文件测试
 
 ## 定时任务
 
@@ -126,4 +132,8 @@ http断言库
 
 - 安装本地包
 
-npm install file:完整的相对路径 如file:/User/Desktop/XXX
+npm install file:完整的相对路径 如 file:/User/Desktop/XXX
+
+- vue-awesome-swiper
+
+swiper vue 版本组件

@@ -134,10 +134,12 @@ tar -zxvf 源文件
 查找字符串中指定的字符
 
 ```shell
+# grep -r '我要查找的字符' ./src
 grep [-acinv] [--color=auto] '搜寻字符串' filename
 ```
 
 选项与参数：
+-r : 在指定目录下搜索含有关键字的文件
 -a ：将 binary 文件以 text 文件的方式搜寻数据
 -c ：计算找到 '搜寻字符串' 的次数
 -i ：忽略大小写的不同，所以大小写视为相同
@@ -197,4 +199,11 @@ ps -ef | grep
 
 - vim 多行编辑
 
-ctrl+v
+ctrl+v，选中多行，按 s 键进入插入模式，再次输入编辑的文案，最后按 ESC 键，即可完成多行编辑
+
+- bash 隐藏用户主机名称
+
+在 vim ~/.bash_profile 文件中更改 export PS1
+
+若啥也不显示 export PS1=''
+简单显示 export PS1='\[\033[01;32m\]→ \W \[\033[00m\]'
