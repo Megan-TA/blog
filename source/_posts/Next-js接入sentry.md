@@ -45,27 +45,27 @@ Next 获取逻辑和渲染是两个维度错误逻辑处理
 // _app.ts
 
 static async getInitialProps(appContext: AppContext) {
-	try {
-		const { Component, ctx } = appContext
-		let pageProps = {}
+ try {
+  const { Component, ctx } = appContext
+  let pageProps = {}
 
-		if (Component.getInitialProps) {
-			pageProps = await Component.getInitialProps(ctx)
-		}
+  if (Component.getInitialProps) {
+   pageProps = await Component.getInitialProps(ctx)
+  }
 
-		return {
-			pageProps,
-		}
-	} catch (error) {
-		console.log('app组件捕获到错误：', error)
-		const { ctx } = appContext
-		const errorEventId = captureException(error, ctx)
-		return {
-			errorEventId,
-			hasError: true,
-			pageProps: {},
-		}
-	}
+  return {
+   pageProps,
+  }
+ } catch (error) {
+  console.log('app组件捕获到错误：', error)
+  const { ctx } = appContext
+  const errorEventId = captureException(error, ctx)
+  return {
+   errorEventId,
+   hasError: true,
+   pageProps: {},
+  }
+ }
 }
 
 ```
@@ -75,13 +75,13 @@ render 错误需要在\_error.js 捕获处理
 ```javascript
 // _error.ts
 static getInitialProps(ctx: NextPageContext) {
-	const { res, err } = ctx
-	if (err) {
-		console.log('Error组件捕获到错误', err)
-		captureException(err, ctx)
-	}
-	const statusCode = res ? res.statusCode : err ? err.statusCode : null
-	return { statusCode }
+ const { res, err } = ctx
+ if (err) {
+  console.log('Error组件捕获到错误', err)
+  captureException(err, ctx)
+ }
+ const statusCode = res ? res.statusCode : err ? err.statusCode : null
+ return { statusCode }
 }
 ```
 
@@ -121,56 +121,56 @@ import * as Sentry from '@sentry/node'
 import { NextPageContext } from 'next'
 
 interface SentryExport {
-	Sentry: typeof Sentry
-	captureException: (err: any, ctx: NextPageContext) => string
+ Sentry: typeof Sentry
+ captureException: (err: any, ctx: NextPageContext) => string
 }
 
 export default (release = process.env.SENTRY_RELEASE): SentryExport => {
-	console.log('SENTRY_RELEASE:', process.env.SENTRY_RELEASE)
-	const sentryOptions: Sentry.NodeOptions = {
-		dsn: '***********',
-		release: release || '',
-		environment: process.env.NODE_ENV,
-		maxBreadcrumbs: 10,
-		attachStacktrace: true,
-		// 只有生产环境发送到sentry
-		enabled: process.env.NODE_ENV === 'production',
-	}
+ console.log('SENTRY_RELEASE:', process.env.SENTRY_RELEASE)
+ const sentryOptions: Sentry.NodeOptions = {
+  dsn: '***********',
+  release: release || '',
+  environment: process.env.NODE_ENV,
+  maxBreadcrumbs: 10,
+  attachStacktrace: true,
+  // 只有生产环境发送到sentry
+  enabled: process.env.NODE_ENV === 'production',
+ }
 
-	Sentry.init(sentryOptions)
+ Sentry.init(sentryOptions)
 
-	return {
-		Sentry,
-		captureException: (err, ctx) => {
-			Sentry.configureScope((scope) => {
-				if (err.message) {
-					// De-duplication currently doesn't work correctly for SSR / browser errors
-					// so we force deduplication by error message if it is present
-					scope.setFingerprint([err.message])
-				}
+ return {
+  Sentry,
+  captureException: (err, ctx) => {
+   Sentry.configureScope((scope) => {
+    if (err.message) {
+     // De-duplication currently doesn't work correctly for SSR / browser errors
+     // so we force deduplication by error message if it is present
+     scope.setFingerprint([err.message])
+    }
 
-				if (err.statusCode) {
-					scope.setExtra('statusCode', err.statusCode)
-				}
+    if (err.statusCode) {
+     scope.setExtra('statusCode', err.statusCode)
+    }
 
-				if (ctx) {
-					const { req, res, query } = ctx
+    if (ctx) {
+     const { req, res, query } = ctx
 
-					if (res && res.statusCode) {
-						scope.setExtra('statusCode', res.statusCode)
-					}
+     if (res && res.statusCode) {
+      scope.setExtra('statusCode', res.statusCode)
+     }
 
-					scope.setTag('ssr', 'true')
-					scope.setExtra('url', req.url)
-					scope.setExtra('method', req.method)
-					scope.setExtra('headers', req.headers)
-					scope.setExtra('query', query)
-				}
-			})
+     scope.setTag('ssr', 'true')
+     scope.setExtra('url', req.url)
+     scope.setExtra('method', req.method)
+     scope.setExtra('headers', req.headers)
+     scope.setExtra('query', query)
+    }
+   })
 
-			return Sentry.captureException(err)
-		},
-	}
+   return Sentry.captureException(err)
+  },
+ }
 }
 ```
 

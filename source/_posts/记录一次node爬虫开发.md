@@ -18,7 +18,7 @@ const os = require('os')
 //Windows系统上'Windows_NT'
 let sysType = os.type()
 if (sysType === 'Windows_NT') {
-	console.log("It's windows")
+ console.log("It's windows")
 }
 ```
 

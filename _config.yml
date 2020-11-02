@@ -24,7 +24,7 @@ permalink_defaults:
 SEOTitle: 黄晨 | chen_huang | Blog
 email: hc1132107224@163.com
 description: "一个码农的个人博客"
-keyword: "博客，前端，js，javascript，vue，react，node，npm，黄晨"
+keyword: "博客，前端，js，javascript，vue，react，node，npm，黄晨，chen_huang"
 header-img: //s1.ax1x.com/2020/06/04/twL8yT.jpg
 article-img: //s1.ax1x.com/2020/06/04/twLffI.jpg
 404-img: //s1.ax1x.com/2020/06/04/twL3lV.png
@@ -177,21 +177,6 @@ marked:
 #   autoDisplay: true, #自动在文章底部显示推荐文章
 #   titleHtml: <h2>推荐文章<span style="font-size:0.45em; color:gray"></span></h2> #自定义标题
 
-# hexo-tag-aplayer
-# reference: https://github.com/MoePlayer/hexo-tag-aplayer
-# aplayer:
-#   meting: true
-
-# MeingJS support for Aplayer
-# reference: https://github.com/metowolf/MetingJS & https://github.com/MoePlayer/APlayer
-metingjs: false
-data-id: 2423410161
-data-server: netease
-data-type: playlist
-data-fixed:
-  true
-  # data-mini:
-  # data-autoplay:
 
 # Reward
 reward: false
@@ -209,6 +194,8 @@ theme: hu
 #sitemap
 sitemap:
   path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

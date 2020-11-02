@@ -22,8 +22,8 @@ import * as Sentry from '@sentry/browser'
 import * as Integrations from '@sentry/integrations'
 
 Sentry.init({
-	dsn: 'https://xxxx@sentry.io/1772852',
-	integrations: [new Integrations.Vue({ Vue, attachProps: true })]
+ dsn: 'https://xxxx@sentry.io/1772852',
+ integrations: [new Integrations.Vue({ Vue, attachProps: true })]
 })
 ```
 
@@ -34,15 +34,15 @@ Sentry.init({
 ```html
 <!-- <script src="https://browser.sentry-cdn.com/5.7.1/bundle.es6.min.js" integrity="sha384-h+FyW7fMq0eyUQeRnmnwiWXMxycy0z8n5sOtIH3NJx5GfqxdletL62letiWALtKy" crossorigin="anonymous"></script> -->
 <script
-	src="https://browser.sentry-cdn.com/5.7.1/bundle.min.js"
-	integrity="sha384-KMv6bBTABABhv0NI+rVWly6PIRvdippFEgjpKyxUcpEmDWZTkDOiueL5xW+cztZZ"
-	crossorigin="anonymous"
+ src="https://browser.sentry-cdn.com/5.7.1/bundle.min.js"
+ integrity="sha384-KMv6bBTABABhv0NI+rVWly6PIRvdippFEgjpKyxUcpEmDWZTkDOiueL5xW+cztZZ"
+ crossorigin="anonymous"
 ></script>
 
 <!-- If you include the integration it will be available under Sentry.Integrations.Vue -->
 <script
-	src="https://browser.sentry-cdn.com/5.7.1/vue.min.js"
-	crossorigin="anonymous"
+ src="https://browser.sentry-cdn.com/5.7.1/vue.min.js"
+ crossorigin="anonymous"
 ></script>
 ```
 
@@ -76,9 +76,9 @@ sentry-cli releases -p $PROJECT files $VERSION upload-sourcemaps ./dist/js/ --ur
 
 ```javascript
 Sentry.init({
-	release: '123456',
-	dsn: 'https://xxxx@sentry.io/1772852',
-	integrations: [new Integrations.Vue({ Vue, attachProps: true })]
+ release: '123456',
+ dsn: 'https://xxxx@sentry.io/1772852',
+ integrations: [new Integrations.Vue({ Vue, attachProps: true })]
 })
 ```
 
