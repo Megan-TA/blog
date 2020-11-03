@@ -4,7 +4,8 @@ catalog: true
 date: 2019-06-16 08:25:18
 subtitle: 
 header-img:
-tags: node
+tags: npm
+categories: 前端
 ---
 
 随着时间的推移，前端的工程日益庞大，越来越复杂的依赖包需要包管理器来维护。相比搭建没有优势bower仓储，更好的方式是在局域网搭建NPM仓储，维护项目中package.json中的各个插件的版本即可维护项目依赖。

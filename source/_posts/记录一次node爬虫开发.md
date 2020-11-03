@@ -4,7 +4,8 @@ catalog: true
 date: 2019-05-07 22:42:51
 subtitle:
 header-img:
-tags: node
+tags: crawler
+categories: 前端
 ---
 
 在做一个爬虫开发需求的使用，由于目标网站是动态的，无法直接处理静态资源，这时候想到使用`google`推出的`node`无头浏览器`puppeteer`，借此尝试一下。

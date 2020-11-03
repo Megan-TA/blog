@@ -11,7 +11,6 @@
     "publish": "hexo generate --deploy"
   },
   "dependencies": {
-    "aplayer": "^1.10.1",
     "hexo": "^3.2.0",
     "hexo-deployer-git": "^0.1.0",
     "hexo-generator-archive": "^0.1.4",
@@ -26,6 +25,8 @@
     "hexo-renderer-marked": "^3.3.0",
     "hexo-renderer-stylus": "^0.3.1",
     "hexo-server": "^0.2.0",
-    "hexo-toc": "^1.0.8"
+    "hexo-symbols-count-time": "^0.7.1",
+    "hexo-toc": "^1.0.8",
+    "hexo-wordcount": "^6.0.1"
   }
 }

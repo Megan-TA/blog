@@ -5,6 +5,7 @@ date: 2020-03-17 10:37:17
 subtitle:
 header-img:
 tags: http
+categories: 前端
 ---
 
 ## TCP 特性
@@ -56,7 +57,7 @@ TCP 三次握手：
 
 [![8NAXnJ.md.jpg](https://s1.ax1x.com/2020/03/17/8NAXnJ.md.jpg)](https://imgchr.com/i/8NAXnJ)
 
-## 为什么需要等待 2MSL 关闭就是安全的？
+## 为什么需要等待 2MSL 关闭就是安全的
 
 因为在 client 发送出 ACK 之后，会遇到如下情况
 

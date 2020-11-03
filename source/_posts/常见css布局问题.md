@@ -5,6 +5,7 @@ date: 2020-03-19 22:30:45
 subtitle:
 header-img:
 tags: css
+categories: 前端
 ---
 
 ## 左右两边盒子宽度固定，中间盒子宽度自适应

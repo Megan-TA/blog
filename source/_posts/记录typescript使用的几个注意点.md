@@ -4,7 +4,8 @@ catalog: true
 date: 2019-07-22 13:38:34
 subtitle:
 header-img:
-tags: javascript
+tags: typescript
+categories: 前端
 ---
 
 近期在做前端团队公共模块和方法的私有 npm 包的时候，采用`typescript`保证包的代码质量，在使用`ts`的过程遇到一些小问题，特此记录下遇到的一些小问题。

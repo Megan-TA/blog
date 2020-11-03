@@ -5,6 +5,7 @@ date: 2019-04-25 15:55:22
 subtitle:
 header-img:
 tags: git
+categories: 前端
 ---
 
 ## git merge（合并）

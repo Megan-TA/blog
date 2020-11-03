@@ -5,6 +5,7 @@ date: 2019-09-24 12:24:41
 subtitle:
 header-img:
 tags: javascript
+categories: 前端
 ---
 
 如果要用 js 实现一个类的话，我们会用构造函数来模拟一个类，代码如下：

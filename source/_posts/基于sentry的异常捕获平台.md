@@ -4,7 +4,8 @@ catalog: true
 date: 2019-11-05 14:53:56
 subtitle:
 header-img:
-tags: 监控
+tags: sentry
+categories: 前端
 ---
 
 ## sentry 介绍
@@ -20,13 +21,13 @@ sentry 的架构分位客户端和服务端，而且 sentry 官方提供不同�
 ## sentry 安装
 
 Sentry 本身是基于 Django 开发的，而且也依赖到其他的如 Postgresql、 Redis 等组件，所以一般有两种途径进行安装：通过 Docker 或用 Python 搭建。官网下分别有以下的两个介绍：
-Docker 安装 https://docs.sentry.io/server/installation/docker/
-Python 安装 https://docs.sentry.io/server/installation/python/
+Docker 安装 <https://docs.sentry.io/server/installation/docker/>
+Python 安装 <https://docs.sentry.io/server/installation/python/>
 我们采用的是 docker 安装方式，如果是采用 docker 安装的方式，那么还有一种更加便捷的方式，那么就是采用 docker-compose 了，具体安装步骤如下：
 
 注意，通过 Docker 本地搭建 Sentry 的时候，需要 docker 版本为 1.10.0 以上，docker-compose 版本为 1.17.0 以上，同时要求最低有 3GB 的可用内存。
 
-1.  安装 docker、docker-compose
+1. 安装 docker、docker-compose
 
 这里采用 yum 安装，具体安装步骤如下：
 
@@ -247,7 +248,7 @@ docker-compose up -d
 
 我们公司使用钉钉作为内部通讯和工作辅助工作，平时工作中大家都可以通过 pc 端和 app 端第一时间查看到消息，并且报警对即时性要求比较高，所以集成钉钉很有必要，下面介绍一下 sentry 集成钉钉的步骤。
 
-1. 安装 sentry-dingding 插件，sentry 的强大和可扩展是它很受欢迎的原因。目前开源社区相关 sentry 的插件也是很丰富的,sentry 钉钉插件 github 地址：https://github.com/anshengme/sentry-dingding。
+1. 安装 sentry-dingding 插件，sentry 的强大和可扩展是它很受欢迎的原因。目前开源社区相关 sentry 的插件也是很丰富的,sentry 钉钉插件 github 地址：<https://github.com/anshengme/sentry-dingding>。
    sentry 为了方便我们安装插件，提供了一个 requirements.txt 文件。我们只需要将我们现需要安装的插件配置进去，重新构建镜像就可以完成安装和集成。修改 requirements.txt：
 
 ```shell
@@ -265,7 +266,7 @@ docker-compose up -d
 
 5. 集成 LDAP
 
-跟集成钉钉一样，sentry 社区也提供了集成插件，sentry ldap 插件地址：https://github.com/Banno/getsentry-ldap-auth。 1.安装 ldap 插件，这里跟安装钉钉插件有一定区别，钉钉是直接配置在 requirements.txt 中就可以了。而 ldap 插件如果采用这样的方式可能会报错，原因是 ldap 插件需要依赖 python-ldap 相关环节，所以我们需要在先安装这些依赖。具体安装步骤如下：
+跟集成钉钉一样，sentry 社区也提供了集成插件，sentry ldap 插件地址：<https://github.com/Banno/getsentry-ldap-auth>。 1.安装 ldap 插件，这里跟安装钉钉插件有一定区别，钉钉是直接配置在 requirements.txt 中就可以了。而 ldap 插件如果采用这样的方式可能会报错，原因是 ldap 插件需要依赖 python-ldap 相关环节，所以我们需要在先安装这些依赖。具体安装步骤如下：
 
 1. 安装 sentry ldap 插件
    修改 DokerFile 文件，在文件添加以下内容：

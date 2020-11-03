@@ -4,7 +4,8 @@ catalog: true
 date: 2019-06-20 11:33:40
 subtitle:
 header-img:
-tags: vue react
+tags: react
+categories: 前端
 ---
 
 ## 一、创建虚拟dom

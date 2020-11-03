@@ -5,6 +5,7 @@ date: 2020-03-09 10:48:45
 subtitle:
 header-img:
 tags: npm
+categories: 前端
 ---
 
 最近在安装 RN 项目时，执行`npm install`遇到如下报错

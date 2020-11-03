@@ -5,6 +5,7 @@ date: 2019-06-19 13:34:23
 subtitle:
 header-img:
 tags: nginx
+categories: 运维
 ---
 
 1. 环境

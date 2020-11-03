@@ -5,6 +5,7 @@ date: 2019-12-23 23:14:51
 subtitle:
 header-img:
 tags: node
+categories: 前端
 ---
 
 ## 性能测试
@@ -23,9 +24,9 @@ ab -c200 -n1600 http://127.0.0.1:3000/download
 
 测试完有个测试报告，主要关心几个数值：
 
-1.  qps（request per second）: 并发数
-2.  Transfer rate （吞吐量）
-3.  Time per request（平均响应时间）
+1. qps（request per second）: 并发数
+2. Transfer rate （吞吐量）
+3. Time per request（平均响应时间）
 
 ### 找到性能瓶颈所在地
 

@@ -5,6 +5,7 @@ date: 2019-05-21 13:51:07
 subtitle:
 header-img:
 tags: jenkins
+categories: 运维
 ---
 
 1. `gitlab`通过`webhooks`在项目指定的分支 push 之后触发 jekins 自动打包

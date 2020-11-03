@@ -4,7 +4,8 @@ catalog: true
 date: 2019-10-11 15:51:00
 subtitle:
 header-img:
-tags: 监控
+tags: sentry
+categories: 前端
 ---
 
 首先需要下载官方提供的 sdk，在项目入口处加入进去。

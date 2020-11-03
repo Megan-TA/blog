@@ -5,6 +5,7 @@ date: 2019-06-19 14:15:03
 subtitle:
 header-img:
 tags: docker
+categories: 运维
 ---
 
 本文都是基于`centos7`环境使用

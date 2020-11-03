@@ -1,22 +1,23 @@
 <!-- Modified by Yu-Hsuan Yen -->
 <!-- Post Header -->
 <style type="text/css">
+    .word_count {
+        margin-top: 20px;
+        font-size: 18px;
+    }
     header.intro-header{
-        <% if (is_home()) { %>
-            background-image: url('<%= config["header-img"] %>') 
+        <% if (is_home()) { %>background-image: url('<%= config["header-img"] %>');
             /*config*/
-        <%} else if (is_post()){%>
-            background-image: url('<%= page["header-img"] || config["article-img"]  %>')
+        <%} else if (is_post()){%>background-image: url('<%= page["header-img"] || config["article-img"]  %>');
             /*post*/
-        <%} else {%>
-            background-image: url('<%= page["header-img"] || config["archives-img"] %>')
+        <%} else {%>background-image: url('<%= page["header-img"] || config["archives-img"] %>');
             /*page*/
         <%} %>
     }
     <% if (config.signature) {%>
-    #signature{
-        background-image: url('<%= config.root + config["signature-img"] %>');
-    }
+        #signature{
+            background-image: url('<%= config.root + config["signature-img"] %>');
+        }
     <%}%>
 </style>
 
@@ -39,6 +40,9 @@
                             Posted by <%- page.author || config.author %> on
                             <%= page.date.format(config.date_format) %>
                         </span>
+                        <div class="word_count">
+                            <span>本文字数：<%= wordcount(page.content) %>字 &nbsp;&nbsp;  | &nbsp;&nbsp;  </span><span>阅读时长：<%= min2read(page.content)  %> 分钟</span>
+                        </div>
                     </div>
                 <% } else { %>
                     <div class="site-heading">

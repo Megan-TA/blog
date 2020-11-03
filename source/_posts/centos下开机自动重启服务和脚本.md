@@ -5,6 +5,7 @@ date: 2019-07-08 10:45:59
 subtitle:
 header-img:
 tags: linux
+categories: 运维
 ---
 
 1. ### 利用`chkconfig`添加开机自启服务
@@ -33,7 +34,7 @@ chkconfig
 
 2. ### 添加开机自启脚本
 
- - 方法一
+- 方法一
 
     1. 赋予脚本可执行权限（/opt/script/duDefaultService.sh是你的脚本路径）
 

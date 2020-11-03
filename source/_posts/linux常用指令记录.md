@@ -5,6 +5,7 @@ date: 2019-03-25 20:41:36
 subtitle:
 header-img:
 tags: linux
+categories: 运维
 ---
 
 - 软连接

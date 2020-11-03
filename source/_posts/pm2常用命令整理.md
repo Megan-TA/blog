@@ -5,6 +5,7 @@ date: 2019-07-25 22:34:15
 subtitle:
 header-img:
 tags: node
+categories: 前端
 ---
 
 - pm2 start

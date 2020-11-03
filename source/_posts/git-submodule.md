@@ -4,7 +4,8 @@ catalog: true
 date: 2019-07-10 16:31:04
 subtitle:
 header-img:
-tags: web
+tags: git
+categories: 前端
 ---
 
 子模块一些操作方法：

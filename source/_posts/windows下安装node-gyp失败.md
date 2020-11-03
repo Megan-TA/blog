@@ -5,6 +5,7 @@ date: 2020-07-31 15:40:58
 subtitle:
 header-img:
 tags: npm
+categories: 前端
 ---
 
 - 用作为当前目录的以上路径启动了 CMD.EXE。UNC 路径不受支持。默认值设为 Windows 目录。

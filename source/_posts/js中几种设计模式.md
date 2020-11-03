@@ -5,6 +5,7 @@ date: 2019-07-14 21:50:10
 subtitle:
 header-img:
 tags: javascript
+categories: 前端
 ---
 
 ## 工厂模式

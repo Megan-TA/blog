@@ -5,6 +5,7 @@ date: 2019-07-24 14:43:38
 subtitle:
 header-img:
 tags: linux
+categories: 前端
 ---
 
 - 安装 github
