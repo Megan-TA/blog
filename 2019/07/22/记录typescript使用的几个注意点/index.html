@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="baidu-site-verification" content="code-NLpTqyNiko">
+    <meta name="google-site-verification" content="gQDeJO3KaNFr7SvzLfuNz_v5iaBV53E3Tt2gFzzcEA4">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="一个码农的个人博客">
+    <meta name="keyword" content="博客，前端，js，javascript，vue，react，node，npm，黄晨，chen_huang">
+    <meta name="referrer" content="no-referrer">
+    <link rel="shortcut icon" href="https://megan-ta.github.io/blog/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          记录typescript使用的几个注意点 - 黄晨 | chen_huang | Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://megan-ta.github.io/blog/2019/07/22/记录typescript使用的几个注意点/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/blog/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/blog/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/blog/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/blog/css/highlight.css">
+
+    <link rel="stylesheet" href="/blog/css/widget.css">
+
+    <link rel="stylesheet" href="/blog/css/rocket.css">
+
+    <link rel="stylesheet" href="/blog/css/signature.css">
+
+    <link rel="stylesheet" href="/blog/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    .word_count {
+        margin-top: 20px;
+        font-size: 18px;
+    }
+    header.intro-header{
+        background-image: url('//s1.ax1x.com/2020/06/04/twLffI.jpg');
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/blog/tags/#typescript" title="typescript">typescript</a>
+                            
+                        </div>
+                        <h1>记录typescript使用的几个注意点</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by 黄晨 on
+                            2019-07-22
+                        </span>
+                        <div class="word_count">
+                            <span>本文字数：881字 &nbsp;&nbsp;  | &nbsp;&nbsp;  </span><span>阅读时长：3 分钟</span>
+                        </div>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/blog/">黄晨</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/blog/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/blog/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/blog/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/blog/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>近期在做前端团队公共模块和方法的私有 npm 包的时候，采用<code>typescript</code>保证包的代码质量，在使用<code>ts</code>的过程遇到一些小问题，特此记录下遇到的一些小问题。</p>
+<ol>
+<li>不想一个个导入类型文件，希望有全局引用类型文件</li>
+</ol>
+<p>一开始在给每个文件定义类型的时候，都会将文件类型放在<code>types</code>文件夹下，通过<code>es6</code>模块暴露出来并在项目中引入对应的类型文件，开始引用方式如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// types/test.d.ts</span></span><br><span class="line"><span class="keyword">export</span> declare <span class="keyword">const</span> test = <span class="string">'123'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// src/test.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; test &#125; <span class="keyword">from</span> <span class="string">'../types/test'</span></span><br></pre></td></tr></table></figure>
+
+<p>这样的话默认也是把<code>.d.ts</code>文件当做一个模块，但是每次都引入的时候会比较麻烦，有没有更简便的方法，不需要引入类型文件？</p>
+<p>答案是有的：利用全局的<code>namespace</code>和<code>tsconfig.json</code>配置</p>
+<p>以下是<code>tsconfig.json</code>一些配置项：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"compilerOptions"</span>: &#123;</span><br><span class="line">      <span class="string">"target"</span>: <span class="string">"es5"</span>,</span><br><span class="line">      <span class="string">"module"</span>: <span class="string">"commonjs"</span>,</span><br><span class="line">      <span class="string">"outDir"</span>: <span class="string">"./dist/lib"</span>,</span><br><span class="line">      <span class="string">"declaration"</span>: <span class="literal">true</span>,  <span class="comment">// 开启打包之后会输出.d.ts文件</span></span><br><span class="line">      <span class="string">"declarationDir"</span>: <span class="string">"./dist/types"</span>,  <span class="comment">// 默认.d.ts会输出到文件所在目录下，也可以指定.d.ts存放路径</span></span><br><span class="line">      <span class="string">"strict"</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="string">"jsx"</span>: <span class="string">"preserve"</span>,</span><br><span class="line">      <span class="string">"importHelpers"</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="string">"removeComments"</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="string">"moduleResolution"</span>: <span class="string">"node"</span>,</span><br><span class="line">      <span class="string">"experimentalDecorators"</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="string">"allowJs"</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="string">"esModuleInterop"</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="string">"allowSyntheticDefaultImports"</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="string">"sourceMap"</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="string">"baseUrl"</span>: <span class="string">"."</span>,</span><br><span class="line">      <span class="string">"types"</span>: [</span><br><span class="line">        <span class="string">"node"</span>,</span><br><span class="line">        <span class="string">"./types"</span>  <span class="comment">// 本地types所在目录，必须在此引入</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="string">"lib"</span>: [</span><br><span class="line">        <span class="string">"esnext"</span>,</span><br><span class="line">        <span class="string">"dom"</span>,</span><br><span class="line">        <span class="string">"dom.iterable"</span>,</span><br><span class="line">        <span class="string">"scripthost"</span></span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"include"</span>: [</span><br><span class="line">      <span class="string">"src/**/*.ts"</span>,</span><br><span class="line">      <span class="string">"src/**/**/*.ts"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"exclude"</span>: [</span><br><span class="line">      <span class="string">"node_modules"</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意上面的 types 配置需要将自己定义的<code>types</code>文件导入进来，这样一个未知类型会在这个指定范围去查找。</p>
+<p>项目代码使用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//types/test.d.ts</span></span><br><span class="line">declare namespace Test &#123;</span><br><span class="line">    interface Detail &#123;</span><br><span class="line">        name: string</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// src/test.ts</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getTestDetail</span> (<span class="params">detail: Test.Detail</span>)</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样就不需要项目代码去引用类型文件，缺点是暴露全局的<code>namespace</code>，需要自己根据情况作出取舍。</p>
+<ol start="2">
+<li>定义自定义对象的属性枚举值</li>
+</ol>
+<p>定义一个配置对象，除了<code>key</code>之外其他属性一样，利用枚举特性定义<code>key</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">declare enum ENV &#123;</span><br><span class="line">  dev = <span class="string">'dev'</span>,</span><br><span class="line">  prod = <span class="string">'prod'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> interface ConfigResult &#123;</span><br><span class="line">  region: string</span><br><span class="line">  accessKeyId: string</span><br><span class="line">  accessKeySecret: string</span><br><span class="line">  expAfter: number</span><br><span class="line">  bucket: string</span><br><span class="line">  maxSize: number</span><br><span class="line">  startsWith: string</span><br><span class="line">  ossHost: string</span><br><span class="line">  host: string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> interface Config &#123;</span><br><span class="line">  [key: string]: &#123;</span><br><span class="line">    [key <span class="keyword">in</span> ENV]: ConfigResult</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>类型文件里面不能导出/定义<code>枚举值</code>，枚举值需要单独定义在代码层面，不然会报</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: Debug Failure. False expression: Output generation failed</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>开发第三方库的时候遇到，开发完之后库打包之后，在项目中导入相关方法并没有相关方法的提示，别人是怎么定义包内部方法的提示呢？在 github 上查阅了几个库，在<code>https://github.com/alibaba/pont</code>这个项目下发现别人<code>typing</code>指向的路径指向本身项目暴露出来的 ts 入口文件，这样就达到使用 ts 的时候有对应的方法提示。</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">"main": "lib/index.js",   // 这个是编译后的库入口文件，一般是js</span><br><span class="line">"typings": "src/index.ts", // 这个是给ts用的本身项目开发的出口文件</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li><p>使用<code>paths</code>做路径映射时候，一定要当前项目配置文件指定<code>baseUrl</code>为当前目录，遇到继承外部项目公共基础配置，公共基础配置设置<code>baseUrl</code>之后，<code>paths</code>路径映射是以外部项目为基准；</p>
+</li>
+<li><p><code>paths</code>做了映射之后，利用提供的<code>tsc</code>编译后的代码并没有做响应的路径转换，比如<code>$src/index.ts</code>，最后编译出来的代码依然是原样，后来是采用<code>rollup.js</code>做了打包处理这个问题。</p>
+</li>
+</ol>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/blog/2019/07/22/一些新的api/" data-toggle="tooltip" data-placement="top" title="一些新的api">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/blog/2019/07/14/js中几种设计模式/" data-toggle="tooltip" data-placement="top" title="js中几种设计模式">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    <style>
+      span.toc-nav-number{
+        display: none
+      }
+    </style>
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="nav">none</ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/blog/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/blog/tags/#typescript" title="typescript">typescript</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="//juejin.im/user/587ecf045c497d0058ba78d7" target="_blank">掘金 chen_huang</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Megan-TA">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 黄晨 2021 
+                </br>
+                    站点总字数：40.8k</p>
+                </p>
+              
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/blog/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/blog/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/blog/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/blog/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/blog/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://megan-ta.github.io/blog/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

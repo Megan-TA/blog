@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="baidu-site-verification" content="code-NLpTqyNiko">
+    <meta name="google-site-verification" content="gQDeJO3KaNFr7SvzLfuNz_v5iaBV53E3Tt2gFzzcEA4">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="一个码农的个人博客">
+    <meta name="keyword" content="博客，前端，js，javascript，vue，react，node，npm，黄晨，chen_huang">
+    <meta name="referrer" content="no-referrer">
+    <link rel="shortcut icon" href="https://megan-ta.github.io/blog/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          Next.js接入sentry - 黄晨 | chen_huang | Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://megan-ta.github.io/blog/2020/03/12/Next-js接入sentry/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/blog/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/blog/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/blog/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/blog/css/highlight.css">
+
+    <link rel="stylesheet" href="/blog/css/widget.css">
+
+    <link rel="stylesheet" href="/blog/css/rocket.css">
+
+    <link rel="stylesheet" href="/blog/css/signature.css">
+
+    <link rel="stylesheet" href="/blog/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    .word_count {
+        margin-top: 20px;
+        font-size: 18px;
+    }
+    header.intro-header{
+        background-image: url('//s1.ax1x.com/2020/06/04/twLffI.jpg');
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/blog/tags/#javascript" title="javascript">javascript</a>
+                            
+                        </div>
+                        <h1>Next.js接入sentry</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by 黄晨 on
+                            2020-03-12
+                        </span>
+                        <div class="word_count">
+                            <span>本文字数：691字 &nbsp;&nbsp;  | &nbsp;&nbsp;  </span><span>阅读时长：3 分钟</span>
+                        </div>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/blog/">黄晨</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/blog/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/blog/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/blog/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/blog/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2><span id="问题">问题</span></h2><p>Next 接入 sentry 收集不到完整的错误</p>
+<h2><span id="原因">原因</span></h2><p>Next 分为客户端和服务端，需要对双端都做上报</p>
+<p>Next 获取逻辑和渲染是两个维度错误逻辑处理</p>
+<h2><span id="如何发现">如何发现</span></h2><p><a href="https://github.com/zeit/next.js/blob/canary/examples/with-sentry/pages/_app.js" target="_blank" rel="noopener">参考 Next 官网 sentry 接入示例</a></p>
+<h2><span id="如何修复">如何修复</span></h2><p>按照示例接入</p>
+<p>其中 sentry 需要在客户端和服务端复用，建议是抽离放在一个文件去维护</p>
+<p>综上需要更改有五处地方</p>
+<ul>
+<li>config/sentry.js</li>
+<li>_app.js</li>
+<li>_error.js</li>
+<li>server/app.js</li>
+<li>next.config.js</li>
+</ul>
+<p>流程图如下：</p>
+<p><img src="https://s1.ax1x.com/2020/03/13/8mXosf.png" alt="Next渲染流程"></p>
+<p>其中_app.js 接入 sentry 初始化逻辑，并且在 getInitProps 方法内，使用 try/catch 执行对应 page 组件的 getInitProps</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// _app.ts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">async</span> getInitialProps(appContext: AppContext) &#123;</span><br><span class="line"> <span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; Component, ctx &#125; = appContext</span><br><span class="line">  <span class="keyword">let</span> pageProps = &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (Component.getInitialProps) &#123;</span><br><span class="line">   pageProps = <span class="keyword">await</span> Component.getInitialProps(ctx)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">   pageProps,</span><br><span class="line">  &#125;</span><br><span class="line"> &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'app组件捕获到错误：'</span>, error)</span><br><span class="line">  <span class="keyword">const</span> &#123; ctx &#125; = appContext</span><br><span class="line">  <span class="keyword">const</span> errorEventId = captureException(error, ctx)</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">   errorEventId,</span><br><span class="line">   hasError: <span class="literal">true</span>,</span><br><span class="line">   pageProps: &#123;&#125;,</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>render 错误需要在_error.js 捕获处理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// _error.ts</span></span><br><span class="line"><span class="keyword">static</span> getInitialProps(ctx: NextPageContext) &#123;</span><br><span class="line"> <span class="keyword">const</span> &#123; res, err &#125; = ctx</span><br><span class="line"> <span class="keyword">if</span> (err) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Error组件捕获到错误'</span>, err)</span><br><span class="line">  captureException(err, ctx)</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">const</span> statusCode = res ? res.statusCode : err ? err.statusCode : <span class="literal">null</span></span><br><span class="line"> <span class="keyword">return</span> &#123; statusCode &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>服务端配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 此处加在了全局错误中间件处理 如果不使用全局错误中间件需要监听koa等实例全局error事件处理</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> errHandler = <span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> next();</span><br><span class="line">    ctx.status = <span class="number">200</span>;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="built_in">console</span>.error(<span class="string">"服务端捕获到错误："</span>, err);</span><br><span class="line">    <span class="comment">// sentry上报错误</span></span><br><span class="line">    captureException(err, ctx);</span><br><span class="line"></span><br><span class="line">    ctx.status = err.code ? <span class="number">200</span> : <span class="number">500</span>;</span><br><span class="line">    ctx.body = &#123;</span><br><span class="line">      message: err.message,</span><br><span class="line">      ...err</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">app.prepare().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> server = <span class="keyword">new</span> Koa();</span><br><span class="line"></span><br><span class="line">  server.use(errHandler);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>sentry 配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> Sentry <span class="keyword">from</span> <span class="string">'@sentry/node'</span></span><br><span class="line"><span class="keyword">import</span> &#123; NextPageContext &#125; <span class="keyword">from</span> <span class="string">'next'</span></span><br><span class="line"></span><br><span class="line">interface SentryExport &#123;</span><br><span class="line"> Sentry: <span class="keyword">typeof</span> Sentry</span><br><span class="line"> captureException: <span class="function">(<span class="params">err: any, ctx: NextPageContext</span>) =&gt;</span> string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> (release = process.env.SENTRY_RELEASE): <span class="function"><span class="params">SentryExport</span> =&gt;</span> &#123;</span><br><span class="line"> <span class="built_in">console</span>.log(<span class="string">'SENTRY_RELEASE:'</span>, process.env.SENTRY_RELEASE)</span><br><span class="line"> <span class="keyword">const</span> sentryOptions: Sentry.NodeOptions = &#123;</span><br><span class="line">  dsn: <span class="string">'***********'</span>,</span><br><span class="line">  release: release || <span class="string">''</span>,</span><br><span class="line">  environment: process.env.NODE_ENV,</span><br><span class="line">  maxBreadcrumbs: <span class="number">10</span>,</span><br><span class="line">  attachStacktrace: <span class="literal">true</span>,</span><br><span class="line">  <span class="comment">// 只有生产环境发送到sentry</span></span><br><span class="line">  enabled: process.env.NODE_ENV === <span class="string">'production'</span>,</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> Sentry.init(sentryOptions)</span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span> &#123;</span><br><span class="line">  Sentry,</span><br><span class="line">  captureException: <span class="function">(<span class="params">err, ctx</span>) =&gt;</span> &#123;</span><br><span class="line">   Sentry.configureScope(<span class="function">(<span class="params">scope</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (err.message) &#123;</span><br><span class="line">     <span class="comment">// De-duplication currently doesn't work correctly for SSR / browser errors</span></span><br><span class="line">     <span class="comment">// so we force deduplication by error message if it is present</span></span><br><span class="line">     scope.setFingerprint([err.message])</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (err.statusCode) &#123;</span><br><span class="line">     scope.setExtra(<span class="string">'statusCode'</span>, err.statusCode)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (ctx) &#123;</span><br><span class="line">     <span class="keyword">const</span> &#123; req, res, query &#125; = ctx</span><br><span class="line"></span><br><span class="line">     <span class="keyword">if</span> (res &amp;&amp; res.statusCode) &#123;</span><br><span class="line">      scope.setExtra(<span class="string">'statusCode'</span>, res.statusCode)</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     scope.setTag(<span class="string">'ssr'</span>, <span class="string">'true'</span>)</span><br><span class="line">     scope.setExtra(<span class="string">'url'</span>, req.url)</span><br><span class="line">     scope.setExtra(<span class="string">'method'</span>, req.method)</span><br><span class="line">     scope.setExtra(<span class="string">'headers'</span>, req.headers)</span><br><span class="line">     scope.setExtra(<span class="string">'query'</span>, query)</span><br><span class="line">    &#125;</span><br><span class="line">   &#125;)</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> Sentry.captureException(err)</span><br><span class="line">  &#125;,</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>next 对应配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">webpack: <span class="function">(<span class="params">config, &#123; isServer, buildId &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (!isServer) &#123;</span><br><span class="line">    config.resolve.alias[<span class="string">"@sentry/node"</span>] = <span class="string">"@sentry/browser"</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  config.plugins.push(</span><br><span class="line">    <span class="keyword">new</span> webpack.DefinePlugin(&#123;</span><br><span class="line">      <span class="string">"process.env.SENTRY_RELEASE"</span>: <span class="built_in">JSON</span>.stringify(buildId)</span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> config;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="总结">总结</span></h2><p>Next 接入 sentry 需要考虑到方方面面，渲染逻辑和数据获取逻辑是两个维度，客户端和服务端又是一个维度。</p>
+<h2><span id="参考资料">参考资料</span></h2><ol>
+<li><a href="https://github.com/zeit/next.js/blob/canary/examples/with-sentry/server.js" target="_blank" rel="noopener">sentry 官网 demo 接入 next</a></li>
+</ol>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/blog/2020/03/13/浅析node进程与线程/" data-toggle="tooltip" data-placement="top" title="浅析node进程与线程">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/blog/2020/03/09/node-gyp-rebuild-Error-EACCES-permission-denied/" data-toggle="tooltip" data-placement="top" title="node-gyp rebuild Error: EACCES: permission denied">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    <style>
+      span.toc-nav-number{
+        display: none
+      }
+    </style>
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">问题</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">原因</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">如何发现</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">如何修复</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">总结</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">参考资料</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/blog/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/blog/tags/#javascript" title="javascript">javascript</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="//juejin.im/user/587ecf045c497d0058ba78d7" target="_blank">掘金 chen_huang</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Megan-TA">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 黄晨 2021 
+                </br>
+                    站点总字数：40.8k</p>
+                </p>
+              
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/blog/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/blog/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/blog/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/blog/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/blog/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://megan-ta.github.io/blog/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

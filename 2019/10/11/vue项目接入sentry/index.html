@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="baidu-site-verification" content="code-NLpTqyNiko">
+    <meta name="google-site-verification" content="gQDeJO3KaNFr7SvzLfuNz_v5iaBV53E3Tt2gFzzcEA4">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="一个码农的个人博客">
+    <meta name="keyword" content="博客，前端，js，javascript，vue，react，node，npm，黄晨，chen_huang">
+    <meta name="referrer" content="no-referrer">
+    <link rel="shortcut icon" href="https://megan-ta.github.io/blog/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          vue项目接入sentry - 黄晨 | chen_huang | Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://megan-ta.github.io/blog/2019/10/11/vue项目接入sentry/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/blog/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/blog/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/blog/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/blog/css/highlight.css">
+
+    <link rel="stylesheet" href="/blog/css/widget.css">
+
+    <link rel="stylesheet" href="/blog/css/rocket.css">
+
+    <link rel="stylesheet" href="/blog/css/signature.css">
+
+    <link rel="stylesheet" href="/blog/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    .word_count {
+        margin-top: 20px;
+        font-size: 18px;
+    }
+    header.intro-header{
+        background-image: url('//s1.ax1x.com/2020/06/04/twLffI.jpg');
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/blog/tags/#sentry" title="sentry">sentry</a>
+                            
+                        </div>
+                        <h1>vue项目接入sentry</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by 黄晨 on
+                            2019-10-11
+                        </span>
+                        <div class="word_count">
+                            <span>本文字数：967字 &nbsp;&nbsp;  | &nbsp;&nbsp;  </span><span>阅读时长：4 分钟</span>
+                        </div>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/blog/">黄晨</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/blog/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/blog/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/blog/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/blog/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>首先需要下载官方提供的 sdk，在项目入口处加入进去。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn add @sentry/browser</span><br><span class="line">yarn add @sentry/integrations</span><br></pre></td></tr></table></figure>
+
+<p>在应用的入口文件，比如 app.js，加入如下配置：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> Sentry <span class="keyword">from</span> <span class="string">'@sentry/browser'</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> Integrations <span class="keyword">from</span> <span class="string">'@sentry/integrations'</span></span><br><span class="line"></span><br><span class="line">Sentry.init(&#123;</span><br><span class="line"> dsn: <span class="string">'https://xxxx@sentry.io/1772852'</span>,</span><br><span class="line"> integrations: [<span class="keyword">new</span> Integrations.Vue(&#123; Vue, <span class="attr">attachProps</span>: <span class="literal">true</span> &#125;)]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>其中 dsn 是在 sentry 创建的项目的设置中，找到 dsn 的选项 tab，找到项目的默认 dsn</p>
+<p>当然如果 application 打包的时候，觉得入口文件体积很大，或者是出于打包速度优化的考虑，可以将 sentry 相关插件通过 cdn 方式引用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- &lt;script src="https://browser.sentry-cdn.com/5.7.1/bundle.es6.min.js" integrity="sha384-h+FyW7fMq0eyUQeRnmnwiWXMxycy0z8n5sOtIH3NJx5GfqxdletL62letiWALtKy" crossorigin="anonymous"&gt;&lt;/script&gt; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span></span></span><br><span class="line"><span class="tag"> <span class="attr">src</span>=<span class="string">"https://browser.sentry-cdn.com/5.7.1/bundle.min.js"</span></span></span><br><span class="line"><span class="tag"> <span class="attr">integrity</span>=<span class="string">"sha384-KMv6bBTABABhv0NI+rVWly6PIRvdippFEgjpKyxUcpEmDWZTkDOiueL5xW+cztZZ"</span></span></span><br><span class="line"><span class="tag"> <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- If you include the integration it will be available under Sentry.Integrations.Vue --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span></span></span><br><span class="line"><span class="tag"> <span class="attr">src</span>=<span class="string">"https://browser.sentry-cdn.com/5.7.1/vue.min.js"</span></span></span><br><span class="line"><span class="tag"> <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>做完第一步骤之后，此时项目已经具备有异常错误向 sentry 上报日志的功能，如果我们有更精确知道某些异常错误是哪个发布版本带上的，导致相关异常的开发者是谁，还有想要统计某个版本相对于之前的发布版本，错误情况如何等需求，此时需要使用 sentry 提供的 release 功能。</p>
+<p>默认接入 release 官方有几种方式，由于我们发布版本并没有走 gitlab、github 等的 ci 流程，我们采用<code>sentry-cli</code>提供的全局命令编写脚本去集成到项目发布流程中。</p>
+<p>简单的 release 脚本如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/sh</span></span><br><span class="line">export SENTRY_AUTH_TOKEN=9b4f6bf1c75e478cab30bb714e0f8e83d712c02a920640e7b7fbf4dc307c1b33</span><br><span class="line">export SENTRY_ORG=poizon</span><br><span class="line"></span><br><span class="line">PROJECT="ticket-platform"</span><br><span class="line"></span><br><span class="line">VERSION=`sentry-cli releases propose-version`</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Create a release</span></span><br><span class="line">sentry-cli releases -p PROJECT new $VERSION</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> upload sourcemap</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> upload-sourcemaps 指定打包后的js文件在项目的路径</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> --url-prefix 外部通过url访问到js静态资源的路径</span></span><br><span class="line">sentry-cli releases -p $PROJECT files $VERSION upload-sourcemaps ./dist/js/ --url-prefix ~/js/</span><br></pre></td></tr></table></figure>
+
+<p>同时需要在初始化 sentry 的入口出加上版本号（commitid），和后台看到的版本名称要一致，比如当前 git 的 commitid 前 6 为是 123456，需要改成如下设置：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Sentry.init(&#123;</span><br><span class="line"> release: <span class="string">'123456'</span>,</span><br><span class="line"> dsn: <span class="string">'https://xxxx@sentry.io/1772852'</span>,</span><br><span class="line"> integrations: [<span class="keyword">new</span> Integrations.Vue(&#123; Vue, <span class="attr">attachProps</span>: <span class="literal">true</span> &#125;)]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>这时候我们在 sentry 后台系统下查看当前项目的的 release 的 tab 下，能看到已经将 sourcemap 文件都上传到 sentry 服务器。默认<code>sentry-cli</code>提供的 release 版本号是根据最后一次 git 提交的 commitid，这样会导致我们在查看版本的时候，面对一连串的 commitid，并不能很简单明了的看到当前版本号，所以需要我们手动指定版本号。</p>
+<ol>
+<li>通过手动指定版本号</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/sh</span></span><br><span class="line">export SENTRY_AUTH_TOKEN=9b4f6bf1c75e478cab30bb714e0f8e83d712c02a920640e7b7fbf4dc307c1b33</span><br><span class="line">export SENTRY_ORG=poizon</span><br><span class="line"></span><br><span class="line">TAG="ticket-platform@2.10.1"</span><br><span class="line"></span><br><span class="line">PROJECT="ticket-platform"</span><br><span class="line"></span><br><span class="line">sentry-cli releases -p $PROJECT new $TAG</span><br><span class="line"></span><br><span class="line">sentry-cli releases -p $PROJECT files $TAG upload-sourcemaps ./dist/js/ --url-prefix ~/js/</span><br></pre></td></tr></table></figure>
+
+<p>初始化的入口处传入的 release 也设置为<code>ticket-platform@2.10.1</code>，可以看到这样的方式很繁琐。</p>
+<ol start="2">
+<li>通过官方提供的 webpack 插件<code>@sentry/webpack-plugin</code></li>
+</ol>
+<p>前提：项目下新建一个<code>.sentryclirc</code>文件，写好 sentry 配置项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[defaults]</span><br><span class="line">url=https://xxx.xxxx.com</span><br><span class="line">org=xxx</span><br><span class="line">project=ticket-platform</span><br><span class="line"></span><br><span class="line">[auth]</span><br><span class="line">token=9b4f6bf1c75e478cab30bb714e0f8e83d712c02a920640e7b7fbf4dc307c1b33</span><br></pre></td></tr></table></figure>
+
+<p>修改项目本身的 webpack 配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> SentryCliPlugin = <span class="built_in">require</span>(<span class="string">'@sentry/webpack-plugin'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> SentryCliPlugin(&#123;</span><br><span class="line">      include: <span class="string">'./dist/js'</span>,</span><br><span class="line">      ignore: [<span class="string">'node_modules'</span>]</span><br><span class="line">      urlPrefix: <span class="string">'~/js/'</span></span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到默认提供的插件也是按照 commitid，在我们项目中在构建的过程时流程大概如下：</p>
+<ul>
+<li>标准的 git coommit（commitizen/cz-cli）</li>
+<li>发版前 standard-version 生成本次的版本号</li>
+<li>打包时 获取<code>package.json</code>的 version 传入<code>SentryCliPlugin</code>的配置项<code>release</code></li>
+</ul>
+<p>至此 vue 项目完美接入 sentry</p>
+<p>参考资料：</p>
+<ol>
+<li><a href="https://docs.sentry.io/platforms/javascript/vue/" target="_blank" rel="noopener">sentry 文档接入 vue</a></li>
+<li><a href="https://www.npmjs.com/package/@sentry/webpack-plugin" target="_blank" rel="noopener">@sentry/webpack-plugin</a></li>
+<li><a href="https://segmentfault.com/a/1190000014683598#articleHeader5" target="_blank" rel="noopener">Sentry 前端部署拓展篇（sourcemap 关联、issue 关联、release 控制）</a></li>
+<li><a href="https://juejin.im/post/5bfe0d5be51d4562587b40b9" target="_blank" rel="noopener">前端日志监控平台 sentry 使用 @sentry/browser @sentry/webpack-plugin</a></li>
+</ol>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/blog/2019/11/05/基于sentry的异常捕获平台/" data-toggle="tooltip" data-placement="top" title="基于sentry的异常捕获平台">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/blog/2019/09/24/js继承问题总结/" data-toggle="tooltip" data-placement="top" title="js继承问题总结">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    <style>
+      span.toc-nav-number{
+        display: none
+      }
+    </style>
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="nav">none</ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/blog/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/blog/tags/#sentry" title="sentry">sentry</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="//juejin.im/user/587ecf045c497d0058ba78d7" target="_blank">掘金 chen_huang</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Megan-TA">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 黄晨 2021 
+                </br>
+                    站点总字数：40.8k</p>
+                </p>
+              
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/blog/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/blog/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/blog/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/blog/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/blog/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://megan-ta.github.io/blog/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

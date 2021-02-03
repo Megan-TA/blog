@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="baidu-site-verification" content="code-NLpTqyNiko">
+    <meta name="google-site-verification" content="gQDeJO3KaNFr7SvzLfuNz_v5iaBV53E3Tt2gFzzcEA4">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="一个码农的个人博客">
+    <meta name="keyword" content="博客，前端，js，javascript，vue，react，node，npm，黄晨，chen_huang">
+    <meta name="referrer" content="no-referrer">
+    <link rel="shortcut icon" href="https://megan-ta.github.io/blog/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          黄晨 | chen_huang | Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://megan-ta.github.io/blog/archives/2/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/blog/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/blog/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/blog/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/blog/css/highlight.css">
+
+    <link rel="stylesheet" href="/blog/css/widget.css">
+
+    <link rel="stylesheet" href="/blog/css/rocket.css">
+
+    <link rel="stylesheet" href="/blog/css/signature.css">
+
+    <link rel="stylesheet" href="/blog/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    .word_count {
+        margin-top: 20px;
+        font-size: 18px;
+    }
+    header.intro-header{
+        background-image: url('//s1.ax1x.com/2020/06/04/twL8yT.jpg');
+            /*config*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="site-heading">
+                        <h1>黄晨</h1>
+                        <!--<hr class="small">-->
+                        <span class="subheading">个人博客</span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/blog/">黄晨</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/blog/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/blog/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/blog/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/blog/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Main Content -->
+<div class="container">
+    <div class="row">
+        
+
+<!-- USE SIDEBAR -->
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+            
+                <!-- Main Content -->
+
+
+<div class="post-preview">
+
+    <a href="/blog/2020/03/17/前端http与https问题整理/">
+        <h2 class="post-title">
+            前端http与https问题整理
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            TCP 特性
+单工通信
+并非 100%可靠协议，仅保证尽可能会把数据传送给接收方
+使用校验和，确认和重传机制来保证可靠传输
+通过滑动窗口来实现流量控制，通过动态改变窗口大小进行阻塞控制。
+
+TCP滑动窗口协议的意义
+可靠性，滑动窗口只有在队列前部被确认之后才会往后移动，保证数据包被接收方确认并接收；
+传输效率，假如没有窗口，服务端是杂乱无章的进行发包，因为TCP的队首效应，如果有前面的包没有......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄晨 on
+            2020-03-17
+        </p>
+        <div class="tags">
+            
+              <a href="/blog/tags/#http" title="http">http</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/blog/2020/03/15/二叉树/">
+        <h2 class="post-title">
+            二叉树
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            二叉树遍历主要分为深度遍历和广度遍历，一共有6种遍历方式。
+其中深度遍历分为：
+
+前序遍历： 访问根–&gt;遍历左子树–&gt;遍历右子树;
+中序遍历： 遍历左子树–&gt;访问根–&gt;遍历右子树
+后序遍历： 遍历左子树–&gt;遍历右子树–&gt;访问根
+
+主要看中间的根结点位置在哪，就对应哪一种遍历
+
+
+前序遍历： - + a * b c / d e
+中序遍历： a + b * c......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄晨 on
+            2020-03-15
+        </p>
+        <div class="tags">
+            
+              <a href="/blog/tags/#algorithm" title="algorithm">algorithm</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/blog/2020/03/13/浅析node进程与线程/">
+        <h2 class="post-title">
+            浅析node进程与线程
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            概念进程：是一个具有一定独立功能的程序在一个数据集上的一次动态执行的过程，是操作系统进行资源分配和调度的一个独立单位，是应用程序运行的载体。
+线程：是程序执行中一个单一的顺序控制流，它存在于进程之中，是比进程更小的能独立运行的基本单位。
+个人不成熟的通俗理解为：
+进程好比一个货物工厂的传送带，每个传送带是相互独立，执行各自任务，其中线程就是传送带上的机械手臂，控制货物在传送带上的具体摆放。
+......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄晨 on
+            2020-03-13
+        </p>
+        <div class="tags">
+            
+              <a href="/blog/tags/#node" title="node">node</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/blog/2020/03/12/Next-js接入sentry/">
+        <h2 class="post-title">
+            Next.js接入sentry
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            问题Next 接入 sentry 收集不到完整的错误
+原因Next 分为客户端和服务端，需要对双端都做上报
+Next 获取逻辑和渲染是两个维度错误逻辑处理
+如何发现参考 Next 官网 sentry 接入示例
+如何修复按照示例接入
+其中 sentry 需要在客户端和服务端复用，建议是抽离放在一个文件去维护
+综上需要更改有五处地方
+
+config/sentry.js
+_app.js
+_erro......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄晨 on
+            2020-03-12
+        </p>
+        <div class="tags">
+            
+              <a href="/blog/tags/#javascript" title="javascript">javascript</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/blog/2020/03/09/node-gyp-rebuild-Error-EACCES-permission-denied/">
+        <h2 class="post-title">
+            node-gyp rebuild Error: EACCES: permission denied
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+最近在安装 RN 项目时，执行npm install遇到如下报错
+
+
+
+很明显是 fsevents 模块使用node-gyp rebuild失败
+看提示信息提示权限相关问题，猜测可能是读写权限问题，
+查看了下权限
+
+
+加上sudo，开启root账户模式，但并未成功。
+经过查询相关资料发现，实际原因是由于用的是 root 账户权限执行 npm，而 npm 默认是不适用 root 权限创建内容......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄晨 on
+            2020-03-09
+        </p>
+        <div class="tags">
+            
+              <a href="/blog/tags/#npm" title="npm">npm</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/blog/2020/01/08/react-hooks入门/">
+        <h2 class="post-title">
+            react-hooks入门
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            react hooks 发布于 React16.8.0 版本，这样的一个新的特性的作用是什么呢？
+众所周知，react 默认使用组件类的语法，当我们在编写和维护这些组件类的时候，往往会遇到如下一些问题：
+
+组件之间复用状态逻辑比较困难
+
+React 本身没有提供将可复用性行为添加到组件的方式，当然针对这些问题有一些方案，比如 render props 和高阶组件；但是在使用这些方案时，往往会......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄晨 on
+            2020-01-08
+        </p>
+        <div class="tags">
+            
+              <a href="/blog/tags/#react" title="react">react</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/blog/2019/12/23/node性能优化/">
+        <h2 class="post-title">
+            node性能优化
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            性能测试压力测试工具
+ab
+webBench
+
+ab是apache自带的压力测试工具。ab非常实用，它不仅可以对apache服务器进行网站访问压力测试，也可以对或其它web类型的服务器进行压力测试。比如nginx、tomcat、IIS等。
+简单介绍下 ab 测试工具使用
+1234#  -c 客户端数# -n 请求总数# -t 测试时长sab -c 200 -n 1600 http://127......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄晨 on
+            2019-12-23
+        </p>
+        <div class="tags">
+            
+              <a href="/blog/tags/#node" title="node">node</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/blog/2019/12/16/前端算法题整理/">
+        <h2 class="post-title">
+            前端算法题整理
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            两个有序数组合并成一个有序数组12345678910111213141516171819202122var a = [1, 7, 10];var b = [2, 4, 12, 16];function merge(arg1, arg2) &#123;  var m = arg1.length;  var n = arg2.length;  while (n &gt; 0) &#123;   ......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄晨 on
+            2019-12-16
+        </p>
+        <div class="tags">
+            
+              <a href="/blog/tags/#algorithm" title="algorithm">algorithm</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/blog/2019/11/12/前端基础面试题整理/">
+        <h2 class="post-title">
+            前端基础面试题整理
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            js 基础
+闭包
+
+一个函数内部返回一个能访问外部变量的函数
+
+作用域
+原型链
+变量提升
+函数参数值传递
+this 指向问题
+函数提升以及优先级问题
+new 操作符做了什么？
+
+
+创建一个空对象，作为将要返回的对象实例；
+将这个空对象的原型对象指向构造函数的 prototype 属性对象；
+调用构造器， 将这个实例对象的值赋值给函数内部的 this 对象；
+执行构造函数内的逻辑；
+如果构造函......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄晨 on
+            2019-11-12
+        </p>
+        <div class="tags">
+            
+              <a href="/blog/tags/#interview" title="interview">interview</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/blog/2019/11/05/基于sentry的异常捕获平台/">
+        <h2 class="post-title">
+            基于sentry的异常捕获平台
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            sentry 介绍sentry 是一个开源的实时错误追踪系统，可以帮助开发者实时监控和统计异常信息。比如客户端和 h5 的 crash 的信息，有了 sentry 以后我们就可以第一时间来处理和解决系统的问题，就不需要过度地依赖用户反馈来定位问题了。sentry 主要包括服务端和客户端 SDK,对于系统集成这一块，sentry 提供了主流语言和框架的支持，包括 java、android、io......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄晨 on
+            2019-11-05
+        </p>
+        <div class="tags">
+            
+              <a href="/blog/tags/#sentry" title="sentry">sentry</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+        <li class="previous">
+            <a href="/blog/">&larr; Newer Posts</a>
+        </li>
+    
+    
+        <li class="next">
+            <a href="/blog/archives/3/">Older Posts &rarr;</a>
+        </li>
+    
+</ul>
+
+
+
+                <br>
+
+                <!-- 如果开启评论功能 -->
+                
+            </div>
+
+          <!-- Sidebar Container -->
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+        <!-- Featured Tags -->
+
+<section>
+    <!-- no hr -->
+    <h5><a href="/blog/tags/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+            
+            <a href="/blog/tags/#js" title="js" rel="0">js</a>
+            
+        
+            
+            <a href="/blog/tags/#redis" title="redis" rel="0">redis</a>
+            
+        
+            
+            <a href="/blog/tags/#mysql" title="mysql" rel="0">mysql</a>
+            
+        
+            
+            <a href="/blog/tags/#javascript" title="javascript" rel="9">javascript</a>
+            
+        
+            
+            <a href="/blog/tags/#deep" title="deep" rel="0">deep</a>
+            
+        
+            
+            <a href="/blog/tags/#mocha" title="mocha" rel="0">mocha</a>
+            
+        
+            
+            <a href="/blog/tags/#前端" title="前端" rel="0">前端</a>
+            
+        
+            
+            <a href="/blog/tags/#linux" title="linux" rel="3">linux</a>
+            
+        
+            
+            <a href="/blog/tags/#docker" title="docker" rel="1">docker</a>
+            
+        
+            
+            <a href="/blog/tags/#git" title="git" rel="2">git</a>
+            
+        
+            
+            <a href="/blog/tags/#node" title="node" rel="4">node</a>
+            
+        
+            
+            <a href="/blog/tags/#npm" title="npm" rel="4">npm</a>
+            
+        
+            
+            <a href="/blog/tags/#crawler" title="crawler" rel="2">crawler</a>
+            
+        
+            
+            <a href="/blog/tags/#react" title="react" rel="2">react</a>
+            
+        
+            
+            <a href="/blog/tags/#sentry" title="sentry" rel="2">sentry</a>
+            
+        
+            
+            <a href="/blog/tags/#algorithm" title="algorithm" rel="3">algorithm</a>
+            
+        
+            
+            <a href="/blog/tags/#http" title="http" rel="1">http</a>
+            
+        
+            
+            <a href="/blog/tags/#IDE" title="IDE" rel="1">IDE</a>
+            
+        
+            
+            <a href="/blog/tags/#随笔" title="随笔" rel="1">随笔</a>
+            
+        
+            
+            <a href="/blog/tags/#小程序" title="小程序" rel="1">小程序</a>
+            
+        
+            
+            <a href="/blog/tags/#css" title="css" rel="1">css</a>
+            
+        
+            
+            <a href="/blog/tags/#typescript" title="typescript" rel="1">typescript</a>
+            
+        
+            
+            <a href="/blog/tags/#jenkins" title="jenkins" rel="1">jenkins</a>
+            
+        
+            
+            <a href="/blog/tags/#interview" title="interview" rel="2">interview</a>
+            
+        
+            
+            <a href="/blog/tags/#nginx" title="nginx" rel="1">nginx</a>
+            
+        
+    </div>
+</section>
+
+        <hr>
+    
+        <!-- Short About -->
+<section class="visible-md visible-lg">
+    <h5><a href="/blog/about/">ABOUT ME</a></h5>
+    <div class="short-about">
+
+        
+            <img id = "avatar_pic" src="//s1.ax1x.com/2020/06/04/twXIeS.png" />
+        
+
+        
+            <p>Stay hungry,Stay foolish</p>
+        
+
+        <!-- SNS Link -->
+        <ul class="list-inline">
+            
+            
+            
+
+            
+
+            
+
+            
+                <li>
+                    <a target="_blank"  href="https://github.com/Megan-TA">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+            
+            
+            
+            
+        </ul>
+    </div>
+</section>
+
+        <hr>
+    
+        
+  <h5>RECENT POSTS</h3>
+  <div class="widget">
+    <ul>
+      
+        <li>
+          <a href="/blog/2021/01/21/小程序带二维码分享图注意点/">小程序带二维码分享图注意点</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2020/12/02/堆排序/">堆排序入门</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2020/11/12/node内存监控/">node内存监控</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2020/08/27/动态规划入门/">动态规划入门</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2020/07/31/windows下安装node-gyp失败/">windows下安装node-gyp失败</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        <hr>
+    
+        <!-- Friends Blog -->
+
+<h5>FRIENDS</h5>
+<ul class="list-inline">
+
+    
+        <li><a href="//juejin.im/user/587ecf045c497d0058ba78d7" target="_blank">掘金 chen_huang</a></li>
+    
+</ul>
+
+        <hr>
+    
+        
+    <h5>ARCHIVES</h5>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/01/">January 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/12/">December 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/11/">November 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/07/">July 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/06/">June 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/05/">May 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/03/">March 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/12/">December 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/10/">October 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/07/">July 2019</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/06/">June 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+
+        <hr>
+    
+        <!-- Categories -->
+
+    <h5>categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/前端/">前端</a><span class="category-list-count">35</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/运维/">运维</a><span class="category-list-count">5</span></li></ul>
+    </div>
+
+        <hr>
+    
+</div>
+
+        
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Megan-TA">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 黄晨 2021 
+                </br>
+                    站点总字数：40.8k</p>
+                </p>
+              
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/blog/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/blog/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/blog/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/blog/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/blog/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://megan-ta.github.io/blog/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="baidu-site-verification" content="code-NLpTqyNiko">
+    <meta name="google-site-verification" content="gQDeJO3KaNFr7SvzLfuNz_v5iaBV53E3Tt2gFzzcEA4">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="一个码农的个人博客">
+    <meta name="keyword" content="博客，前端，js，javascript，vue，react，node，npm，黄晨，chen_huang">
+    <meta name="referrer" content="no-referrer">
+    <link rel="shortcut icon" href="https://megan-ta.github.io/blog/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          黄晨 | chen_huang | Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://megan-ta.github.io/blog/archives/4/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/blog/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/blog/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/blog/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/blog/css/highlight.css">
+
+    <link rel="stylesheet" href="/blog/css/widget.css">
+
+    <link rel="stylesheet" href="/blog/css/rocket.css">
+
+    <link rel="stylesheet" href="/blog/css/signature.css">
+
+    <link rel="stylesheet" href="/blog/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    .word_count {
+        margin-top: 20px;
+        font-size: 18px;
+    }
+    header.intro-header{
+        background-image: url('//s1.ax1x.com/2020/06/04/twL8yT.jpg');
+            /*config*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="site-heading">
+                        <h1>黄晨</h1>
+                        <!--<hr class="small">-->
+                        <span class="subheading">个人博客</span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/blog/">黄晨</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/blog/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/blog/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/blog/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/blog/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Main Content -->
+<div class="container">
+    <div class="row">
+        
+
+<!-- USE SIDEBAR -->
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+            
+                <!-- Main Content -->
+
+
+<div class="post-preview">
+
+    <a href="/blog/2019/07/03/常用npm包整理/">
+        <h2 class="post-title">
+            常用npm包整理
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            git 钩子
+husky
+lint-staged
+
+代码风格相关
+commitizen
+eslint
+standard-version
+stylelint
+
+123456npm install commitizen -gcommitizen init cz-conventional-changelog --yarn --dev --exactyarn add standard-version......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄晨 on
+            2019-07-03
+        </p>
+        <div class="tags">
+            
+              <a href="/blog/tags/#npm" title="npm">npm</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/blog/2019/06/20/react-vue中dom-diff简易版实现/">
+        <h2 class="post-title">
+            react/vue中dom-diff简易版实现
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一、创建虚拟dom利用 create-react-app快速创建一个项目模板；
+删掉src下的源文件，替换成 index.js
+首先我们先要用一个对象定义一个虚拟DOM的数据结构：
+123456789101112131415Element &#123;    type: 'ul',    props: &#123;        class: 'list'    &#125;,    chi......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄晨 on
+            2019-06-20
+        </p>
+        <div class="tags">
+            
+              <a href="/blog/tags/#react" title="react">react</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/blog/2019/06/19/docker基本使用/">
+        <h2 class="post-title">
+            docker基本使用
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            本文都是基于centos7环境使用
+
+启动 docker
+
+启动配置文件默认/etc/docker/daemon.json可以修改配置文件指定 docker 服务启动的一些默认参数
+
+–regisrty-mirror=PROXY_URL 指定拉取镜像的地址加速 Docker 镜像拉取
+2.docker pull NAME[:TAG]默认都是从 docker官方仓库去拉取镜像（registry......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄晨 on
+            2019-06-19
+        </p>
+        <div class="tags">
+            
+              <a href="/blog/tags/#docker" title="docker">docker</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/blog/2019/06/19/python爬虫框架scrapy/">
+        <h2 class="post-title">
+            python爬虫框架scrapy
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            基本用法1.创建项目
+1scrapy startproject 项目名称
+
+2.创建一个爬虫
+1scrapy genspider XX XX.com
+
+3.启动脚本
+1scrapy crawl XX
+
+也可以新建一个启动文件，比如start.py
+123from scrapy.cmdline import executeexecute('scrapy crawl stockX'.split(......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄晨 on
+            2019-06-19
+        </p>
+        <div class="tags">
+            
+              <a href="/blog/tags/#crawler" title="crawler">crawler</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/blog/2019/06/19/nginx入门/">
+        <h2 class="post-title">
+            nginx入门
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+环境
+CENTOS&gt;=7.0,位数 X64 CENTOS 7.2
+
+关闭 iptables
+iptables 命令是 Linux 上常用的防火墙软件
+
+
+
+功能
+命令
+
+
+
+停止防火墙
+systemctl stop firewalld.service
+
+
+永久关闭防火墙
+systemctl disable firewalld.service
+
+
+
+安装依赖
+12yum  -y ins......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄晨 on
+            2019-06-19
+        </p>
+        <div class="tags">
+            
+              <a href="/blog/tags/#nginx" title="nginx">nginx</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/blog/2019/06/16/利用verdaccio搭建私有npm仓库/">
+        <h2 class="post-title">
+            利用verdaccio搭建私有npm仓库
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            随着时间的推移，前端的工程日益庞大，越来越复杂的依赖包需要包管理器来维护。相比搭建没有优势bower仓储，更好的方式是在局域网搭建NPM仓储，维护项目中package.json中的各个插件的版本即可维护项目依赖。
+verdaccio是一个部署简易的可以实现github仓储私有化的npm组件，fork于sinopia项目，由于sinopia项目现在不太维护，存在一些bug，不建议使用。
+使用v......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄晨 on
+            2019-06-16
+        </p>
+        <div class="tags">
+            
+              <a href="/blog/tags/#npm" title="npm">npm</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/blog/2019/06/15/序/">
+        <h2 class="post-title">
+            序
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            hello，大家好，我是黄晨，来自江苏泰州，前端开发一枚。
+搭建这个博客的原因，主要受限于以下几点：
+
+平时学习、积累的知识需要有一个平台去记录，之前也使用了比如掘金、简书、博客园、github这些网站去在线记录，一开始还能满足自己的需求，后来慢慢觉得还是需要有一个自己的博客，提供一种更自由、个性化的编写体验以及阅读体验；
+知识点需要查阅，温故知新，查漏补缺；
+分享自己遇到的一些知识和经验给......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄晨 on
+            2019-06-15
+        </p>
+        <div class="tags">
+            
+              <a href="/blog/tags/#随笔" title="随笔">随笔</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/blog/2019/05/21/记录平时jenkins使用遇到的问题/">
+        <h2 class="post-title">
+            记录平时jenkins使用遇到的问题
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+gitlab通过webhooks在项目指定的分支 push 之后触发 jekins 自动打包
+
+在 jekins 安装 gitlab-hook-plugin和 gitlab-plugin插件，安装成功的话会在创建项目的Build Triggers构建地方看到一个选项 Build when a change is pushed to GitLab. GitLab webhook URL
+
+
+......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄晨 on
+            2019-05-21
+        </p>
+        <div class="tags">
+            
+              <a href="/blog/tags/#jenkins" title="jenkins">jenkins</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/blog/2019/05/07/记录一次node爬虫开发/">
+        <h2 class="post-title">
+            记录一次node爬虫开发
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            在做一个爬虫开发需求的使用，由于目标网站是动态的，无法直接处理静态资源，这时候想到使用google推出的node无头浏览器puppeteer，借此尝试一下。
+因为我当时开发的时候，在mac上开发，开发完毕之后需要部署到远程centos7的远程服务器上，部署的时候就有个小问题，如何判断系统环境是 mac、window 还是 linux，来决定导出的文件存放的目录。
+12345678const ......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄晨 on
+            2019-05-07
+        </p>
+        <div class="tags">
+            
+              <a href="/blog/tags/#crawler" title="crawler">crawler</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/blog/2019/04/25/git常用命令/">
+        <h2 class="post-title">
+            git常用命令
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            git merge（合并）git 中有两个合并策略： fast-forward（-ff）和 no-fast-forward（–no-ff）
+fast-forward（–ff）从 master 分支切出的 dev 分支，dev 在 merge 到 master 时，master 分支并没有额外提交，那么合并不会产生新的提交记录
+
+no-fast-forward（–no-ff）dev 在 mer......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 黄晨 on
+            2019-04-25
+        </p>
+        <div class="tags">
+            
+              <a href="/blog/tags/#git" title="git">git</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+        <li class="previous">
+            <a href="/blog/archives/3/">&larr; Newer Posts</a>
+        </li>
+    
+    
+        <li class="next">
+            <a href="/blog/archives/5/">Older Posts &rarr;</a>
+        </li>
+    
+</ul>
+
+
+
+                <br>
+
+                <!-- 如果开启评论功能 -->
+                
+            </div>
+
+          <!-- Sidebar Container -->
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+        <!-- Featured Tags -->
+
+<section>
+    <!-- no hr -->
+    <h5><a href="/blog/tags/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+            
+            <a href="/blog/tags/#js" title="js" rel="0">js</a>
+            
+        
+            
+            <a href="/blog/tags/#redis" title="redis" rel="0">redis</a>
+            
+        
+            
+            <a href="/blog/tags/#mysql" title="mysql" rel="0">mysql</a>
+            
+        
+            
+            <a href="/blog/tags/#javascript" title="javascript" rel="9">javascript</a>
+            
+        
+            
+            <a href="/blog/tags/#deep" title="deep" rel="0">deep</a>
+            
+        
+            
+            <a href="/blog/tags/#mocha" title="mocha" rel="0">mocha</a>
+            
+        
+            
+            <a href="/blog/tags/#前端" title="前端" rel="0">前端</a>
+            
+        
+            
+            <a href="/blog/tags/#linux" title="linux" rel="3">linux</a>
+            
+        
+            
+            <a href="/blog/tags/#docker" title="docker" rel="1">docker</a>
+            
+        
+            
+            <a href="/blog/tags/#git" title="git" rel="2">git</a>
+            
+        
+            
+            <a href="/blog/tags/#node" title="node" rel="4">node</a>
+            
+        
+            
+            <a href="/blog/tags/#npm" title="npm" rel="4">npm</a>
+            
+        
+            
+            <a href="/blog/tags/#crawler" title="crawler" rel="2">crawler</a>
+            
+        
+            
+            <a href="/blog/tags/#react" title="react" rel="2">react</a>
+            
+        
+            
+            <a href="/blog/tags/#sentry" title="sentry" rel="2">sentry</a>
+            
+        
+            
+            <a href="/blog/tags/#algorithm" title="algorithm" rel="3">algorithm</a>
+            
+        
+            
+            <a href="/blog/tags/#http" title="http" rel="1">http</a>
+            
+        
+            
+            <a href="/blog/tags/#IDE" title="IDE" rel="1">IDE</a>
+            
+        
+            
+            <a href="/blog/tags/#随笔" title="随笔" rel="1">随笔</a>
+            
+        
+            
+            <a href="/blog/tags/#小程序" title="小程序" rel="1">小程序</a>
+            
+        
+            
+            <a href="/blog/tags/#css" title="css" rel="1">css</a>
+            
+        
+            
+            <a href="/blog/tags/#typescript" title="typescript" rel="1">typescript</a>
+            
+        
+            
+            <a href="/blog/tags/#jenkins" title="jenkins" rel="1">jenkins</a>
+            
+        
+            
+            <a href="/blog/tags/#interview" title="interview" rel="2">interview</a>
+            
+        
+            
+            <a href="/blog/tags/#nginx" title="nginx" rel="1">nginx</a>
+            
+        
+    </div>
+</section>
+
+        <hr>
+    
+        <!-- Short About -->
+<section class="visible-md visible-lg">
+    <h5><a href="/blog/about/">ABOUT ME</a></h5>
+    <div class="short-about">
+
+        
+            <img id = "avatar_pic" src="//s1.ax1x.com/2020/06/04/twXIeS.png" />
+        
+
+        
+            <p>Stay hungry,Stay foolish</p>
+        
+
+        <!-- SNS Link -->
+        <ul class="list-inline">
+            
+            
+            
+
+            
+
+            
+
+            
+                <li>
+                    <a target="_blank"  href="https://github.com/Megan-TA">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+            
+            
+            
+            
+        </ul>
+    </div>
+</section>
+
+        <hr>
+    
+        
+  <h5>RECENT POSTS</h3>
+  <div class="widget">
+    <ul>
+      
+        <li>
+          <a href="/blog/2021/01/21/小程序带二维码分享图注意点/">小程序带二维码分享图注意点</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2020/12/02/堆排序/">堆排序入门</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2020/11/12/node内存监控/">node内存监控</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2020/08/27/动态规划入门/">动态规划入门</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2020/07/31/windows下安装node-gyp失败/">windows下安装node-gyp失败</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        <hr>
+    
+        <!-- Friends Blog -->
+
+<h5>FRIENDS</h5>
+<ul class="list-inline">
+
+    
+        <li><a href="//juejin.im/user/587ecf045c497d0058ba78d7" target="_blank">掘金 chen_huang</a></li>
+    
+</ul>
+
+        <hr>
+    
+        
+    <h5>ARCHIVES</h5>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/01/">January 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/12/">December 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/11/">November 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/08/">August 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/07/">July 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/06/">June 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/05/">May 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/03/">March 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/12/">December 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/10/">October 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/07/">July 2019</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/06/">June 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+
+        <hr>
+    
+        <!-- Categories -->
+
+    <h5>categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/前端/">前端</a><span class="category-list-count">35</span></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/运维/">运维</a><span class="category-list-count">5</span></li></ul>
+    </div>
+
+        <hr>
+    
+</div>
+
+        
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Megan-TA">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 黄晨 2021 
+                </br>
+                    站点总字数：40.8k</p>
+                </p>
+              
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/blog/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/blog/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/blog/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/blog/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/blog/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://megan-ta.github.io/blog/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

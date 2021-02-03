@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="baidu-site-verification" content="code-NLpTqyNiko">
+    <meta name="google-site-verification" content="gQDeJO3KaNFr7SvzLfuNz_v5iaBV53E3Tt2gFzzcEA4">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="一个码农的个人博客">
+    <meta name="keyword" content="博客，前端，js，javascript，vue，react，node，npm，黄晨，chen_huang">
+    <meta name="referrer" content="no-referrer">
+    <link rel="shortcut icon" href="https://megan-ta.github.io/blog/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          react/vue中dom-diff简易版实现 - 黄晨 | chen_huang | Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://megan-ta.github.io/blog/2019/06/20/react-vue中dom-diff简易版实现/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/blog/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/blog/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/blog/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/blog/css/highlight.css">
+
+    <link rel="stylesheet" href="/blog/css/widget.css">
+
+    <link rel="stylesheet" href="/blog/css/rocket.css">
+
+    <link rel="stylesheet" href="/blog/css/signature.css">
+
+    <link rel="stylesheet" href="/blog/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    .word_count {
+        margin-top: 20px;
+        font-size: 18px;
+    }
+    header.intro-header{
+        background-image: url('//s1.ax1x.com/2020/06/04/twLffI.jpg');
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/blog/tags/#react" title="react">react</a>
+                            
+                        </div>
+                        <h1>react/vue中dom-diff简易版实现</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by 黄晨 on
+                            2019-06-20
+                        </span>
+                        <div class="word_count">
+                            <span>本文字数：959字 &nbsp;&nbsp;  | &nbsp;&nbsp;  </span><span>阅读时长：3 分钟</span>
+                        </div>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/blog/">黄晨</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/blog/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/blog/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/blog/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/blog/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2><span id="一-创建虚拟dom">一、创建虚拟dom</span></h2><p>利用 <code>create-react-app</code>快速创建一个项目模板；</p>
+<p>删掉src下的源文件，替换成 index.js</p>
+<p>首先我们先要用一个对象定义一个虚拟DOM的数据结构：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Element &#123;</span><br><span class="line">    type: 'ul',</span><br><span class="line">    props: &#123;</span><br><span class="line">        class: 'list'</span><br><span class="line">    &#125;,</span><br><span class="line">    children: [</span><br><span class="line">        Element&#123;</span><br><span class="line">            type: 'li',</span><br><span class="line">            props: &#123;</span><br><span class="line">                class: 'item'</span><br><span class="line">            &#125;,</span><br><span class="line">            children: ['a']</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>开始码代码实现虚拟dom的方法实现。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/3/166d7c8c5aa6083b?w=2956&h=992&f=png&s=271739" alt="&#39;虚拟DOM结构&#39;"><br>浏览器上查看打印的日志信息，如下：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/3/166d7ca53ba8fef7?w=1210&h=410&f=png&s=97781" alt="控制台日志"></p>
+<p>既然虚拟DOM方法已经写好，下一步就要将这个虚拟dom插入到页面中，那我们可以专门写一个渲染真实节点的方法<code>render</code></p>
+<p>先遍历最外层<code>ul</code>的<code>type</code>和<code>props</code>两个属性</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/3/166d7e8001b419a3?w=2568&h=1244&f=png&s=359336" alt="render"></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/3/166d7e9fddde1a34?w=1078&h=128&f=png&s=25171" alt="控制台日志"></p>
+<p>注意：<code>input</code>标签的<code>value</code>属性 还有所有标签的<code>style</code>属性</p>
+<p>好了，接下来就是继续遍历<code>children</code>属性，此时<code>children</code>会有两种情况</p>
+<ol>
+<li>如果是文本 直接插入；</li>
+<li>如果是子元素，递归遍历直到最终的结果是文本；</li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/3/166d7f0b58ed9735?w=1036&h=484&f=png&s=95541" alt="遍历虚拟don元素转换为真实dom结构"></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/3/166d7f0d50748a42?w=676&h=198&f=png&s=31439" alt="控制台日志"></p>
+<p>下一步我们将这个实际的DOM元素结构插入到页面中</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/3/166d8078bce16225?w=2988&h=774&f=png&s=270016" alt="append"><br><img src="https://user-gold-cdn.xitu.io/2018/11/3/166d805dec820f97?w=1120&h=862&f=png&s=112852" alt="控制台日志"></p>
+<p>完成第一部分。</p>
+<hr>
+<h2><span id="二-实现dom-diff算法">二、实现dom-diff算法</span></h2><p><code>dom-diff</code>算法就是在两棵抽象语法树的同一位置采用先序的深度遍历算法做比较，同时用补丁的形式记录需要更新的节点位置。</p>
+<p>若<code>type</code>不一致直接替换当前节点以及当前节点下的子节点；<br>如果两个父节点一致，则从左往后遍历子节点，若子节点一致，遍历子节点下的子节点，依次递归。</p>
+<p>补丁包的定义规则如下：</p>
+<ol>
+<li>属性不同（type: ‘ATTRS’, attrs）</li>
+<li>新的节点被删除了 （type: ‘REMOVE’, index: xxxx）</li>
+<li>节点类型不同/新增 （type: ‘REPLACE’, newNode）</li>
+<li>仅仅是文本变化（type: ‘TEXT’, text）</li>
+</ol>
+<p>新建一个<code>dom-diff.js</code>，专门处理<code>diff</code>算法</p>
+<p>手动调用<code>diff</code>方法（react中调用<code>diff</code>算法是在触发<code>setState</code>之后）</p>
+<p>两个虚拟dom结构如下：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/4/166ddf9046719203?w=1272&h=896&f=png&s=189549" alt="虚拟dom结构"></p>
+<p>先处理<code>type</code>相同，属性不同的情况。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/4/166dca2da79ddd4a?w=1240&h=1688&f=png&s=288100" alt="属性不同"></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/4/166dca49d1e2ece5?w=1158&h=420&f=png&s=70893" alt="控制台日志"></p>
+<p>发现控制台已经打印到属性变化的补丁包，最后我们把属性的小补丁包存放到最外层的大补丁包中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 补丁包 存放两个虚拟dom的差异部分</span><br><span class="line">let patchs = &#123;&#125;</span><br><span class="line">// 放到最外层的大补丁包中</span><br><span class="line">if (currentPatchs.length &gt; 0) &#123;</span><br><span class="line">  patchs[index] = currentPatchs</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>好了 相同类型的父节点一样，在属性比较完成之后，就需要比较<code>children</code>的属性是否有变化<br>比较<code>children</code>属性内部元素是否变化，利用递归去遍历</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let globalIndex = 0</span><br><span class="line"></span><br><span class="line">function diffChildren (oldChildrens, newChildrens) &#123;</span><br><span class="line">  oldChildrens.forEach((child, idx) =&gt; &#123;</span><br><span class="line">    walk(child, newChildrens[idx], ++globalIndex)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果一开始<code>type</code>类型不相同不需要再去比较，直接用新节点替换老节点即可；</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// type不一致</span><br><span class="line">currentPatchs.push(&#123;</span><br><span class="line">  type: TYPES.REPLACE,</span><br><span class="line">  newNode: newTree</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>兼容并处理好各种情况，比如：新节点不存在的情况，新节点增加，新节点类型改变，新节点文本改变以及新节点的属性变化等情况；</p>
+<p>最终拿到所有与旧节点有差异的对象放入patchs这样的一个补丁对象中。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/4/166dde85f556609a?w=1432&h=1092&f=png&s=211043" alt="控制台日志"></p>
+<p>补丁包的<code>key</code>就是对应新节点有变化的数据位置。</p>
+<hr>
+<h2><span id="三-打补丁更新视图">三、 打补丁更新视图</span></h2><p>最后一步将补丁的差异对象与现有虚拟DOM节点遍历进行一一比较与替换。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/4/166ddee92a1a76de?w=1098&h=426&f=png&s=61221" alt="开始打补丁"></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/4/166ddeed8a40ba8c?w=1096&h=1094&f=png&s=175704" alt="补丁步骤"></p>
+<p>根据之前定义的不同补丁对象结构依次处理</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/4/166ddf0cc87aaa5d?w=1248&h=1138&f=png&s=192351" alt="补丁步骤"></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/11/4/166ddf097e341aaf?w=1006&h=1032&f=png&s=120960" alt="控制台日志"></p>
+<p>大功告成！</p>
+<hr>
+<p>这只是diff算法的一个简易实现，还存在一些复杂情况处理的情况以及还有很多算法上面优化的方案，不过已经让我们大概了解了<code>diff</code>算法的原理。</p>
+<p>如有笔误或者其他实现不对的地方，还望大家指出，谢谢！</p>
+<p>具体代码可以参考github链接查看：<a href="https://github.com/Megan-TA/dom-diff-demo" target="_blank" rel="noopener">dom-diff-demo</a></p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/blog/2019/07/03/常用npm包整理/" data-toggle="tooltip" data-placement="top" title="常用npm包整理">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/blog/2019/06/19/docker基本使用/" data-toggle="tooltip" data-placement="top" title="docker基本使用">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    <style>
+      span.toc-nav-number{
+        display: none
+      }
+    </style>
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">一、创建虚拟dom</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">二、实现dom-diff算法</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">三、 打补丁更新视图</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/blog/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/blog/tags/#react" title="react">react</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="//juejin.im/user/587ecf045c497d0058ba78d7" target="_blank">掘金 chen_huang</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Megan-TA">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 黄晨 2021 
+                </br>
+                    站点总字数：40.8k</p>
+                </p>
+              
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/blog/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/blog/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/blog/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/blog/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/blog/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://megan-ta.github.io/blog/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

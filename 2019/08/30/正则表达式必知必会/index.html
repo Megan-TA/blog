@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="baidu-site-verification" content="code-NLpTqyNiko">
+    <meta name="google-site-verification" content="gQDeJO3KaNFr7SvzLfuNz_v5iaBV53E3Tt2gFzzcEA4">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="一个码农的个人博客">
+    <meta name="keyword" content="博客，前端，js，javascript，vue，react，node，npm，黄晨，chen_huang">
+    <meta name="referrer" content="no-referrer">
+    <link rel="shortcut icon" href="https://megan-ta.github.io/blog/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          正则表达式必知必会 - 黄晨 | chen_huang | Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://megan-ta.github.io/blog/2019/08/30/正则表达式必知必会/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/blog/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/blog/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/blog/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/blog/css/highlight.css">
+
+    <link rel="stylesheet" href="/blog/css/widget.css">
+
+    <link rel="stylesheet" href="/blog/css/rocket.css">
+
+    <link rel="stylesheet" href="/blog/css/signature.css">
+
+    <link rel="stylesheet" href="/blog/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    .word_count {
+        margin-top: 20px;
+        font-size: 18px;
+    }
+    header.intro-header{
+        background-image: url('//s1.ax1x.com/2020/06/04/twLffI.jpg');
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/blog/tags/#javascript" title="javascript">javascript</a>
+                            
+                        </div>
+                        <h1>正则表达式必知必会</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by 黄晨 on
+                            2019-08-30
+                        </span>
+                        <div class="word_count">
+                            <span>本文字数：1.4k字 &nbsp;&nbsp;  | &nbsp;&nbsp;  </span><span>阅读时长：6 分钟</span>
+                        </div>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/blog/">黄晨</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/blog/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/blog/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/blog/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/blog/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2><span id="规则说明">规则说明</span></h2><ul>
+<li>\n 回车</li>
+<li>\t 制表符</li>
+<li>\r 换行符</li>
+<li>\s 空格</li>
+<li>\u4e00-\u9fa5 中文</li>
+<li>\w 大小写字母_数字</li>
+<li>\b : 独立的部分 （ 起始，结束，空格 ）</li>
+<li>{n, m} 至少出现 n 次 最多 m 次</li>
+<li>{n,} 至少 n 次</li>
+<li>. 任意次</li>
+<li>+ 至少一次</li>
+<li>{n} 至少 n 次</li>
+<li>() 子表达式，分组符号</li>
+<li>[\s\S] 任意字符</li>
+<li>^ 放在正则的最开始位置，就代表起始的意思，注意 /[^a] / 和 /^[a]/是不一样的，前者是排除的意思，后者是代表首位。</li>
+<li>[] 表示某个集合中的任意一个</li>
+<li>[^a] 排除 a</li>
+<li>?=   向前查找</li>
+<li>?&lt;=  向后查找</li>
+<li>?!   负向前查找</li>
+<li>?&lt;!  负向后查找（不包含）</li>
+</ul>
+<h2><span id="常用匹配规则">常用匹配规则</span></h2><ul>
+<li>匹配中文: [\u4e00-\u9fa5]</li>
+<li>任意字符：.*（贪婪型） .*?（懒惰型）</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//去掉a标签</span></span><br><span class="line">a =</span><br><span class="line"> <span class="string">'度假：原价购页面&lt;a href="jumpType:22,jumplink:273" style="font-size:16px"&gt;sss&lt;/a&gt;'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//  .*? 是一个组合 尽可能匹配少的内容 即不会贪婪匹配到&lt;/a&gt;结束</span></span><br><span class="line">a.replace(<span class="regexp">/&lt;\/?a.*?&gt;/g</span>, <span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'2013-6-7'</span>;</span><br><span class="line"><span class="comment">// 全局匹配数字，横杠，横杠数量至少为1，匹配结果为：  3- 6-</span></span><br><span class="line"><span class="keyword">var</span> re1 = <span class="regexp">/\d-+/g</span>;</span><br><span class="line"><span class="comment">// 全局匹配数字，横杠，数字和横杠整体数量至少为1   3-6-</span></span><br><span class="line"><span class="keyword">var</span> re1 = <span class="regexp">/(\d-)+/g</span>;</span><br><span class="line"><span class="comment">// 全局匹配至少一个数字，匹配一个横杠 匹配结果：2013- 6-</span></span><br><span class="line"><span class="keyword">var</span> re2  = <span class="regexp">/(\d+)(-)/g</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'2013-6-7'</span>;</span><br><span class="line"><span class="keyword">var</span> re = <span class="regexp">/(\d+)(-)/g</span>;</span><br><span class="line"></span><br><span class="line">str = str.replace(re,<span class="function"><span class="keyword">function</span>(<span class="params">$<span class="number">0</span>,$<span class="number">1</span>,$<span class="number">2</span></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//replace()中如果有子项，</span></span><br><span class="line">    <span class="comment">//第一个参数：$0（匹配成功后的整体结果  2013-  6-）,</span></span><br><span class="line">    <span class="comment">// 第二个参数 : $1(匹配成功的第一个分组，这里指的是\d   2013, 6)</span></span><br><span class="line">    <span class="comment">//第三个参数 : $1(匹配成功的第二个分组，这里指的是-    - - )</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $<span class="number">1</span> + <span class="string">'.'</span>;  <span class="comment">//分别返回2013.   6.</span></span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// var re = /\bclassname\b/;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 不能这样写，当正则需要用到参数时候，一定要用全称的写法，简写方式会</span></span><br><span class="line"><span class="comment">// 把classname当做一个字符串去匹配。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> re = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'\\b'</span>+classname+<span class="string">'\\b'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 匹配的时候，classname前面必须是起始或者空格，后面也是。</span></span><br><span class="line"></span><br><span class="line">默认匹配成功就停止，所以就算有重复的也不会再匹配进去了。</span><br></pre></td></tr></table></figure>
+
+<h2><span id="回溯引用前后一致匹配">回溯引用：前后一致匹配</span></h2><p>背景</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 测试文本</span></span><br><span class="line"><span class="keyword">var</span> str1 = <span class="string">`</span></span><br><span class="line"><span class="string">&lt;Body&gt;</span></span><br><span class="line"><span class="string">    &lt;H1&gt;Welcome to my Homepage&lt;/H1&gt;</span></span><br><span class="line"><span class="string">    Content is divided into two sections: &lt;BR&gt;</span></span><br><span class="line"><span class="string">    &lt;H2&gt;ColdFusion&lt;/H2&gt;</span></span><br><span class="line"><span class="string">    Information about Macromedia ColdFusion.</span></span><br><span class="line"><span class="string">    &lt;H2&gt;Wireless&lt;/H2&gt;</span></span><br><span class="line"><span class="string">    Information about Bluetooth, 802.11, and more.</span></span><br><span class="line"><span class="string">&lt;/Body&gt;</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意 .*? （懒惰型） 而不是.*（贪婪型），</span></span><br><span class="line"><span class="comment">// 如果是.*有可能会存在从H1一直匹配到H6的情况出现</span></span><br><span class="line"><span class="keyword">const</span> a = <span class="regexp">/&lt;[Hh][1-6]&gt;.*?&lt;\/[Hh][1-6]&gt;/g</span></span><br></pre></td></tr></table></figure>
+
+<p>缺点</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 测试文本</span></span><br><span class="line"><span class="keyword">var</span> str1 = <span class="string">`</span></span><br><span class="line"><span class="string">&lt;Body&gt;</span></span><br><span class="line"><span class="string">    &lt;H1&gt;Welcome to my Homepage&lt;/H1&gt;</span></span><br><span class="line"><span class="string">    Content is divided into two sections: &lt;BR&gt;</span></span><br><span class="line"><span class="string">    &lt;H2&gt;ColdFusion&lt;/H2&gt;</span></span><br><span class="line"><span class="string">    Information about Macromedia ColdFusion.</span></span><br><span class="line"><span class="string">    &lt;H2&gt;Wireless&lt;/H3&gt;</span></span><br><span class="line"><span class="string">    Information about Bluetooth, 802.11, and more.</span></span><br><span class="line"><span class="string">&lt;/Body&gt;</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 注意 .*? （懒惰型） 而不是.*（贪婪型），</span></span><br><span class="line"><span class="comment">// 如果是.*有可能会存在从H1一直匹配到H6的情况出现</span></span><br><span class="line"><span class="keyword">const</span> a = <span class="regexp">/&lt;[Hh][1-6]&gt;.*?&lt;\/[Hh][1-6]&gt;/g</span></span><br></pre></td></tr></table></figure>
+
+<p>此时使用上述匹配会匹配到不合法的字符（&lt;H2&gt;Wireless&lt;/H3&gt;），在这种情况下只能求助于回溯引用。</p>
+<h3><span id="回溯引用">回溯引用</span></h3><p>指得是模式的后半部分引用在前半部分中定义的<em>子表达式</em>。</p>
+<p>回溯引用匹配通常从1开始计数（\1、\2等）。在许多实现里，第0个匹配（\0）可以用来代表整个正则表达式</p>
+<p>与字符串的replace方法的回调使用$0, $1, $2等参数类似</p>
+<p>其他一些元字符</p>
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\E</td>
+<td align="center">结束\L或\U转换</td>
+</tr>
+<tr>
+<td>\l</td>
+<td align="center">把下一个字符转换为小写</td>
+</tr>
+<tr>
+<td>\L</td>
+<td align="center">把\L到\E之间的字符全部转换为小写</td>
+</tr>
+<tr>
+<td>\u</td>
+<td align="center">把下一个字符转换为大写</td>
+</tr>
+<tr>
+<td>\U</td>
+<td align="center">把\U到\E之间的字符全部转换为大写</td>
+</tr>
+</tbody></table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> b = <span class="string">'313-555-123'</span>.replace(<span class="regexp">/(\d&#123;3&#125;)(-)(\d&#123;3&#125;)-(\d&#123;3&#125;)/g</span>, ($<span class="number">0</span>, $<span class="number">1</span>, $<span class="number">2</span>, $<span class="number">3</span>, $<span class="number">4</span>) =&gt; <span class="string">`(<span class="subst">$&#123;$<span class="number">1</span>&#125;</span>) <span class="subst">$&#123;$<span class="number">3</span>&#125;</span>-<span class="subst">$&#123;$<span class="number">4</span>&#125;</span>`</span>) <span class="comment">// (313) 555-123</span></span><br></pre></td></tr></table></figure>
+
+<p>解决</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 测试文本</span></span><br><span class="line"><span class="keyword">var</span> str1 = <span class="string">`</span></span><br><span class="line"><span class="string">&lt;Body&gt;</span></span><br><span class="line"><span class="string">    &lt;H1&gt;Welcome to my Homepage&lt;/H1&gt;</span></span><br><span class="line"><span class="string">    Content is divided into two sections: &lt;BR&gt;</span></span><br><span class="line"><span class="string">    &lt;H2&gt;ColdFusion&lt;/H2&gt;</span></span><br><span class="line"><span class="string">    Information about Macromedia ColdFusion.</span></span><br><span class="line"><span class="string">    &lt;H2&gt;Wireless&lt;/H3&gt;</span></span><br><span class="line"><span class="string">    Information about Bluetooth, 802.11, and more.</span></span><br><span class="line"><span class="string">    &lt;H2&gt;Wireless&lt;/h2&gt;</span></span><br><span class="line"><span class="string">&lt;/Body&gt;</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a = <span class="regexp">/&lt;([Hh][1-6])&gt;.*?&lt;\/\1&gt;/g</span></span><br></pre></td></tr></table></figure>
+
+<h2><span id="前后查找">前后查找</span></h2><h3><span id="概括">概括</span></h3><p>从结果中排除最终不需要的辅助查找的字符</p>
+<h3><span id="背景">背景</span></h3><p>比如有一些字符串&lt;h1&gt;ssss&lt;/h1&gt;，我们只需要其中的ssss，不需要在返回的结果中包含&lt;h1&gt;等标签字符，一般做法是先想办法把他们检索出来，在以手动形式排除，这既浪费时间，又容易招致不必要的后患。这时候就需要一种模式，包含匹配的本身并不返回，而是用于确定正确的匹配位置，他并不是匹配结果的一部分。换句话说，我们需要进行<strong>前后查找</strong>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 测试文本</span></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">`</span></span><br><span class="line"><span class="string">http://www.forta.com/</span></span><br><span class="line"><span class="string">https://www.forta.com/</span></span><br><span class="line"><span class="string">ftp://www.forta.com/</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 向前查找   匹配字符直到:停止（不包含:）</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="regexp">/.+(?=:)/g</span>   <span class="comment">// http https ftp</span></span><br><span class="line"><span class="comment">// 包含:</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="regexp">/.+(:)/g</span>     <span class="comment">// http: https: ftp:</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取物品价格</span></span><br><span class="line"><span class="keyword">var</span> str1 = <span class="string">`</span></span><br><span class="line"><span class="string">ABCD: $23.25</span></span><br><span class="line"><span class="string">HFG1: $5.3</span></span><br><span class="line"><span class="string">XTC99: $69.1</span></span><br><span class="line"><span class="string">Total items found: 4</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 结果会有多余的$</span></span><br><span class="line"><span class="keyword">var</span> a1 = <span class="regexp">/\$\d+\.\d+/g</span> <span class="comment">// $23.25 $5.3 $69.1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 向后查找 结果不会返回多余的$  </span></span><br><span class="line"><span class="keyword">var</span> b1 = <span class="regexp">/(?&lt;=\$)\.\d+/g</span> <span class="comment">// 23.25 5.3 69.1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取购买物品的数量</span></span><br><span class="line"><span class="keyword">var</span> str2 = <span class="string">`</span></span><br><span class="line"><span class="string">I paid $30 for 100 apples, 50 oranges, and 60 pears. I saved $5 on this order.</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a2 = <span class="string">`/\b(?&lt;!\$)\d+/g`</span></span><br></pre></td></tr></table></figure>
+
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/blog/2019/09/24/js继承问题总结/" data-toggle="tooltip" data-placement="top" title="js继承问题总结">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/blog/2019/07/25/pm2常用命令整理/" data-toggle="tooltip" data-placement="top" title="pm2常用命令整理">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+  
+    <style>
+      span.toc-nav-number{
+        display: none
+      }
+    </style>
+  
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">规则说明</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">常用匹配规则</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">回溯引用：前后一致匹配</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">回溯引用</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">前后查找</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">概括</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">背景</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/blog/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/blog/tags/#javascript" title="javascript">javascript</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="//juejin.im/user/587ecf045c497d0058ba78d7" target="_blank">掘金 chen_huang</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Megan-TA">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 黄晨 2021 
+                </br>
+                    站点总字数：40.8k</p>
+                </p>
+              
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/blog/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/blog/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/blog/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/blog/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/blog/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://megan-ta.github.io/blog/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
