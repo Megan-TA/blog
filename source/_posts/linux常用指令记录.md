@@ -84,6 +84,23 @@ chown -R www:www /data/www-data/test
 
 [source 详解](https://www.cnblogs.com/ThatsMyTiger/p/6865817.html)
 
+环境变量
+
+比如npm全局一些命令，如eslint、vue等这些，需要在`~`目录下新建`.bash_profile`文件
+
+```shell
+# 已重新设置npm全局目录为.npm-global
+export PATH=~/.npm-global/bin:$PATH 
+```
+
+每次打开一个子shell窗口时，都需要`source`命令来共享父shell暴露出来的变量，这样会很麻烦，可以新建一个`vim ~/.zshrc`文件
+
+```shell
+source ~/.bash_profile
+```
+
+这个文件每次用户登录系统之后会默认执行此文件内容，这样就会在新建子shell的时候获取到父shell暴露出来的环境变量
+
 ---
 
 - curl

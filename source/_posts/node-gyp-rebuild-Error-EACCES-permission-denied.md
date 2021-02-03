@@ -8,7 +8,7 @@ tags: npm
 categories: 前端
 ---
 
-最近在安装 RN 项目时，执行`npm install`遇到如下报错
+1. 最近在安装 RN 项目时，执行`npm install`遇到如下报错
 
 {% asset_img node-gyp-error.png %}
 
@@ -26,3 +26,14 @@ categories: 前端
 `--unsafe-perm=true --allow-root`即可解决问题。
 
 {% asset_img node-gyp-success.png %}
+
+2. `node-sass`安装提示`EACCES`错误 使用`--unsafe-perm`参数安装
+
+
+总结：安装npm包时遇到`EACCES`相关错误时，先尝试`sudo`安装，若再提示相关问题加上`--unsafe-perm`参数
+
+
+
+
+
+
